@@ -76,14 +76,39 @@ function getCsrfCookie() {
         ?.slice("csrftoken=".length) || "";
 }
 
+function wait(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function getCsrfToken() {
-    const response = await fetch(`${API_BASE_URL}/api/auth/csrf/`, {
-        credentials: "include",
-        headers: { Accept: "application/json" },
-    });
-    if (!response.ok) throw new Error("Unable to start a secure login session.");
-    const payload = await response.json();
-    return payload.csrfToken || getCsrfCookie();
+    // Free-tier hosting can spin the backend down after inactivity; the first
+    // request after that can hit a 502/503 for a few seconds while it wakes
+    // up. Retry a few times before treating it as a real failure.
+    const attempts = 4;
+    const delaysMs = [0, 1500, 3000, 5000];
+    let lastError = null;
+    for (let attempt = 0; attempt < attempts; attempt += 1) {
+        if (delaysMs[attempt]) await wait(delaysMs[attempt]);
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/auth/csrf/`, {
+                credentials: "include",
+                headers: { Accept: "application/json" },
+            });
+            if (!response.ok) {
+                lastError = new Error(
+                    response.status >= 500
+                        ? "The server is starting up. Please try again in a moment."
+                        : "Unable to start a secure login session."
+                );
+                continue;
+            }
+            const payload = await response.json();
+            return payload.csrfToken || getCsrfCookie();
+        } catch (error) {
+            lastError = new Error("Unable to reach the server. Please check your connection and try again.");
+        }
+    }
+    throw lastError;
 }
 
 function dashboardForRole(role) {
