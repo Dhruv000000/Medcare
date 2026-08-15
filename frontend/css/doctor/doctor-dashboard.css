@@ -270,6 +270,50 @@ ul {
 
 }
 
+/* Multi-page sidebar navigation (direct <a> children of <nav>, no <li>) */
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+}
+.sidebar nav a {
+    height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 14px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    color: #647186;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: .25s;
+}
+.sidebar nav a i {
+    width: 19px;
+    text-align: center;
+    font-size: 15px;
+}
+.sidebar nav a:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+    transform: translateX(2px);
+}
+.sidebar nav a.active {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 var(--primary);
+}
+.sidebar nav a.logout {
+    margin-top: 120px;
+    color: var(--red);
+}
+.sidebar nav a.logout:hover {
+    background: var(--red-light);
+    color: var(--red);
+}
+
 
 /* =========================================================
    MAIN
@@ -555,6 +599,13 @@ ul {
 
 }
 
+a.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
 
 /* =========================================================
    CARDS
@@ -743,6 +794,50 @@ ul {
 
 }
 
+
+/* Single-column full-width page layout (list/detail pages) */
+.content-single {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 22px 35px 35px;
+}
+.filter-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.filter-bar .search {
+    flex: 1;
+    min-width: 220px;
+}
+.filter-bar select {
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--background);
+    color: var(--text);
+    font-size: 11px;
+    min-width: 160px;
+}
+.page-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 35px 0;
+    gap: 16px;
+}
+.page-title-row h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+}
+.page-title-row p {
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--muted);
+}
 
 /* =========================================================
    PATIENT PANEL
@@ -980,6 +1075,43 @@ tr:last-child td {
 
 }
 
+/* Appointment / prescription / report status values reuse the same badge look */
+.status.confirmed, .status.completed, .status.active, .status.normal {
+    color: var(--green);
+    background: var(--green-light);
+}
+.status.pending, .status.refill_needed, .status.abnormal {
+    color: var(--orange);
+    background: var(--orange-light);
+}
+.status.rejected, .status.cancelled {
+    color: var(--red);
+    background: var(--red-light);
+}
+
+/* =========================================================
+   ACTION BAR (list pages)
+========================================================= */
+.action-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.action-bar button {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+.action-bar .confirm, .action-bar .complete { background: var(--green-light); color: var(--green); }
+.action-bar .confirm:hover, .action-bar .complete:hover { background: var(--green); color: #fff; }
+.action-bar .reject, .action-bar .cancel { background: var(--red-light); color: var(--red); }
+.action-bar .reject:hover, .action-bar .cancel:hover { background: var(--red); color: #fff; }
+.action-bar .download { background: var(--primary-light); color: var(--primary); }
+.action-bar .download:hover { background: var(--primary); color: #fff; }
 
 /* =========================================================
    VIEW BUTTON
@@ -1235,7 +1367,8 @@ tr:last-child td {
 }
 
 
-.ai-panel button {
+.ai-panel button,
+.ai-panel a {
 
     border: none;
 
@@ -1251,10 +1384,17 @@ tr:last-child td {
 
     font-weight: 600;
 
+    display: inline-flex;
+
+    align-items: center;
+
+    text-decoration: none;
+
 }
 
 
-.ai-panel button i {
+.ai-panel button i,
+.ai-panel a i {
 
     margin-left: 6px;
 

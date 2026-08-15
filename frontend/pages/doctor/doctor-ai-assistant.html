@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Doctor | AI Assistant</title>
+    <link rel="stylesheet" href="../../css/doctor/doctor-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="logo"><i class="fa-solid fa-heart-pulse"></i><h2>MediCare</h2></div>
+    <nav aria-label="Doctor navigation">
+        <a href="doctor-dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+        <a href="doctor-patients.html"><i class="fa-solid fa-users"></i><span>My Patients</span></a>
+        <a href="doctor-appointments.html"><i class="fa-solid fa-calendar-check"></i><span>Appointments</span></a>
+        <a href="doctor-medical-reports.html"><i class="fa-solid fa-file-medical"></i><span>Medical Reports</span></a>
+        <a href="doctor-prescriptions.html"><i class="fa-solid fa-prescription-bottle-medical"></i><span>Prescriptions</span></a>
+        <a href="doctor-clinical-tools.html"><i class="fa-solid fa-stethoscope"></i><span>Clinical Tools</span></a>
+        <a href="doctor-ai-assistant.html" class="active"><i class="fa-solid fa-robot"></i><span>AI Assistant</span></a>
+        <a href="doctor-settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+        <a href="../auth/login.html" class="logout"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+    </nav>
+</aside>
+
+<main class="main">
+    <div class="topbar">
+        <div class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="patientSearch" placeholder="Search patients...">
+        </div>
+        <div class="profile">
+            <div class="notification"><i class="fa-solid fa-bell"></i><span>3</span></div>
+            <div class="doctor-profile">
+                <img src="https://i.pravatar.cc/100?img=12" alt="Doctor">
+                <div><strong id="doctorName">Loading...</strong><small id="doctorSpecialization">Loading...</small></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="page-title-row">
+        <div>
+            <h1>AI Assistant</h1>
+            <p>Academic-only disease-risk classification tool for authorized doctors.</p>
+        </div>
+    </section>
+
+    <section class="content-single">
+        <div class="ai-panel" id="aiPanel">
+            <div class="ai-icon"><i class="fa-solid fa-robot"></i></div>
+            <h2>Academic AI Risk Classification</h2>
+            <p>Authorized doctors may submit the approved public-dataset feature schema for an academic development-only classification. This is not clinically validated and is not a diagnosis or medical advice.</p>
+
+            <form id="doctorAiForm" class="ai-form" aria-describedby="aiFormNote" novalidate>
+                <p id="aiFormNote" class="ai-form-note">Enter the exact source-coded feature values. The backend remains authoritative for validation. Model probability is an academic model output, not diagnostic confidence. The doctor remains responsible for clinical interpretation and decisions. Do not enter patient identifiers or unrelated clinical records.</p>
+                <div class="ai-form-grid">
+                    <div class="ai-field">
+                        <label for="aiAge">age</label>
+                        <input id="aiAge" name="age" type="number" min="29" max="77" step="1" required>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiSex">sex (source code)</label>
+                        <select id="aiSex" name="sex" required>
+                            <option value="">Select</option><option value="0">0</option><option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiCp">cp (source code)</label>
+                        <select id="aiCp" name="cp" required>
+                            <option value="">Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiTrestbps">trestbps</label>
+                        <input id="aiTrestbps" name="trestbps" type="number" min="94" max="200" step="any" required>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiChol">chol</label>
+                        <input id="aiChol" name="chol" type="number" min="126" max="564" step="any" required>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiFbs">fbs (source code)</label>
+                        <select id="aiFbs" name="fbs" required>
+                            <option value="">Select</option><option value="0">0</option><option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiRestecg">restecg (source code)</label>
+                        <select id="aiRestecg" name="restecg" required>
+                            <option value="">Select</option><option value="0">0</option><option value="1">1</option><option value="2">2</option>
+                        </select>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiThalach">thalach</label>
+                        <input id="aiThalach" name="thalach" type="number" min="71" max="202" step="any" required>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiExang">exang (source code)</label>
+                        <select id="aiExang" name="exang" required>
+                            <option value="">Select</option><option value="0">0</option><option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiOldpeak">oldpeak</label>
+                        <input id="aiOldpeak" name="oldpeak" type="number" min="0" max="6.2" step="0.1" required>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiSlope">slope (source code)</label>
+                        <select id="aiSlope" name="slope" required>
+                            <option value="">Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiCa">ca (source code)</label>
+                        <select id="aiCa" name="ca" required>
+                            <option value="">Select</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="ai-field">
+                        <label for="aiThal">thal (source code)</label>
+                        <select id="aiThal" name="thal" required>
+                            <option value="">Select</option><option value="3">3</option><option value="6">6</option><option value="7">7</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ai-form-actions">
+                    <button id="aiSubmitBtn" class="ai-submit-btn" type="submit">Run Academic Classification</button>
+                    <button id="aiResetBtn" class="ai-reset-btn" type="button">Clear</button>
+                </div>
+                <p id="aiValidationMessage" class="ai-message" role="alert" aria-live="polite"></p>
+                <div id="aiPredictionResult" class="ai-result" role="status" aria-live="polite" hidden></div>
+                <section id="aiExplanation" class="ai-explanation" aria-labelledby="aiExplanationTitle" hidden>
+                    <h3 id="aiExplanationTitle">Model feature contributions</h3>
+                    <p id="aiExplanationNote" class="ai-explanation-note">These signed values describe how the model used the submitted feature values. They do not describe biological causes or clinical importance.</p>
+                    <div id="aiExplanationList" class="ai-explanation-list" role="list" aria-label="Model feature contribution list"></div>
+                </section>
+                <section id="aiReportsPanel" class="ai-reports-panel" aria-labelledby="aiReportsTitle">
+                    <div class="ai-reports-header">
+                        <div>
+                            <h3 id="aiReportsTitle">Authorized Academic Reports</h3>
+                            <p>Reports are limited to predictions requested by this doctor. Patient prediction history is not available.</p>
+                        </div>
+                        <button id="viewAiReportsButton" class="ai-reports-button" type="button" aria-expanded="false" aria-controls="aiReportsList">View Reports</button>
+                    </div>
+                    <p id="aiReportsStatus" class="ai-reports-status" role="status" aria-live="polite" hidden></p>
+                    <div id="aiReportsList" class="ai-reports-list" role="list" hidden></div>
+                </section>
+            </form>
+        </div>
+    </section>
+</main>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../../js/auth/auth-client.js"></script>
+<script src="../../js/doctor/doctor-dashboard.js"></script>
+</body>
+</html>

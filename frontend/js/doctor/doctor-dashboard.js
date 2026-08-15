@@ -572,7 +572,8 @@ clinicalModal?.addEventListener('click', event => {
     }
 });
 
-document.getElementById('viewPatients')?.addEventListener('click', () => showToast('The dashboard lists all authorized patients currently supported by the backend.'));
+document.getElementById('viewPatients')?.addEventListener('click', () => { window.location.href = 'doctor-patients.html'; });
+document.getElementById('viewAppointments')?.addEventListener('click', () => { window.location.href = 'doctor-appointments.html'; });
 document.getElementById('addPatientBtn')?.addEventListener('click', () => showToast('Adding patients is deferred because no patient-management API exists.'));
 
 function clearAiReports() {
@@ -903,56 +904,5 @@ aiButton?.addEventListener('click', () => {
 aiForm?.addEventListener('submit', submitAiPrediction);
 document.getElementById('aiResetBtn')?.addEventListener('click', resetAiForm);
 document.querySelector('.notification')?.addEventListener('click', () => showToast('Notifications are deferred because no notification API exists.'));
-
-const SIDEBAR_NAV_TARGETS = {
-    dashboard: () => document.querySelector('.welcome'),
-    patients: () => document.getElementById('patientsPanel'),
-    appointments: () => document.getElementById('appointmentPanel'),
-    'clinical-tools': () => document.getElementById('patientsPanel'),
-    reports: () => document.getElementById('patientsPanel'),
-    prescriptions: () => document.getElementById('patientsPanel'),
-    'ai-assistant': () => document.getElementById('aiPanel'),
-};
-
-function activateSidebarNav(selectedItem) {
-    document.querySelectorAll('#doctorSidebarNav li[data-nav]').forEach(item => item.classList.remove('active'));
-    selectedItem.classList.add('active');
-}
-
-function handleSidebarNav(navItem) {
-    const target = navItem.dataset.nav;
-    activateSidebarNav(navItem);
-
-    if (target === 'clinical-tools' || target === 'reports' || target === 'prescriptions') {
-        const labels = {
-            'clinical-tools': 'Clinical Tools',
-            reports: 'Medical Reports',
-            prescriptions: 'Prescriptions',
-        };
-        showToast(`${labels[target]}: select a patient below and click "View" to open their authorized clinical records, reports, and prescriptions.`);
-    } else if (target === 'settings') {
-        showToast('Doctor account settings are not available yet.');
-    }
-
-    const element = SIDEBAR_NAV_TARGETS[target]?.();
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (target === 'ai-assistant' && aiForm?.hasAttribute('hidden')) {
-            aiButton?.click();
-        }
-    }
-}
-
-document.getElementById('doctorSidebarNav')?.addEventListener('click', event => {
-    const navItem = event.target.closest('li[data-nav]');
-    if (navItem) handleSidebarNav(navItem);
-});
-document.getElementById('doctorSidebarNav')?.addEventListener('keydown', event => {
-    const navItem = event.target.closest('li[data-nav]');
-    if (navItem && (event.key === 'Enter' || event.key === ' ')) {
-        event.preventDefault();
-        handleSidebarNav(navItem);
-    }
-});
 
 document.addEventListener('DOMContentLoaded', loadDoctorDashboard);

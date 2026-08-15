@@ -42,91 +42,17 @@
 
     <!-- NAVIGATION -->
 
-    <ul id="doctorSidebarNav">
-
-
-        <li class="active" data-nav="dashboard" role="button" tabindex="0">
-
-            <i class="fa-solid fa-house"></i>
-
-            <span>Dashboard</span>
-
-        </li>
-
-
-        <li data-nav="patients" role="button" tabindex="0">
-
-            <i class="fa-solid fa-users"></i>
-
-            <span>My Patients</span>
-
-        </li>
-
-
-        <li data-nav="appointments" role="button" tabindex="0">
-
-            <i class="fa-solid fa-calendar-check"></i>
-
-            <span>Appointments</span>
-
-        </li>
-
-
-        <li data-nav="reports" role="button" tabindex="0">
-
-            <i class="fa-solid fa-file-medical"></i>
-
-            <span>Medical Reports</span>
-
-        </li>
-
-
-        <li data-nav="prescriptions" role="button" tabindex="0">
-
-            <i class="fa-solid fa-prescription-bottle-medical"></i>
-
-            <span>Prescriptions</span>
-
-        </li>
-
-
-        <li data-nav="clinical-tools" role="button" tabindex="0">
-
-            <i class="fa-solid fa-stethoscope"></i>
-
-            <span>Clinical Tools</span>
-
-        </li>
-
-
-        <li data-nav="ai-assistant" role="button" tabindex="0">
-
-            <i class="fa-solid fa-robot"></i>
-
-            <span>AI Assistant</span>
-
-        </li>
-
-
-        <li data-nav="settings" role="button" tabindex="0">
-
-            <i class="fa-solid fa-gear"></i>
-
-            <span>Settings</span>
-
-        </li>
-
-
-        <li class="logout">
-
-            <i class="fa-solid fa-right-from-bracket"></i>
-
-            <span>Logout</span>
-
-        </li>
-
-
-    </ul>
+    <nav aria-label="Doctor navigation">
+        <a href="doctor-dashboard.html" class="active"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+        <a href="doctor-patients.html"><i class="fa-solid fa-users"></i><span>My Patients</span></a>
+        <a href="doctor-appointments.html"><i class="fa-solid fa-calendar-check"></i><span>Appointments</span></a>
+        <a href="doctor-medical-reports.html"><i class="fa-solid fa-file-medical"></i><span>Medical Reports</span></a>
+        <a href="doctor-prescriptions.html"><i class="fa-solid fa-prescription-bottle-medical"></i><span>Prescriptions</span></a>
+        <a href="doctor-clinical-tools.html"><i class="fa-solid fa-stethoscope"></i><span>Clinical Tools</span></a>
+        <a href="doctor-ai-assistant.html"><i class="fa-solid fa-robot"></i><span>AI Assistant</span></a>
+        <a href="doctor-settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+        <a href="../auth/login.html" class="logout"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+    </nav>
 
 
 </aside>
@@ -753,6 +679,10 @@
 
                     </div>
 
+                    <button id="viewAppointments">
+                        View All
+                    </button>
+
                 </div>
 
 
@@ -889,107 +819,10 @@
                 </p>
 
 
-                <button id="aiButton" type="button" aria-expanded="false" aria-controls="doctorAiForm">
+                <a id="aiButton" href="doctor-ai-assistant.html">
                     Open Academic AI Tool
                     <i class="fa-solid fa-arrow-right"></i>
-                </button>
-
-
-                <form id="doctorAiForm" class="ai-form" aria-describedby="aiFormNote" novalidate hidden>
-                    <p id="aiFormNote" class="ai-form-note">Enter the exact source-coded feature values. The backend remains authoritative for validation. Model probability is an academic model output, not diagnostic confidence. The doctor remains responsible for clinical interpretation and decisions. Do not enter patient identifiers or unrelated clinical records.</p>
-                    <div class="ai-form-grid">
-                        <div class="ai-field">
-                            <label for="aiAge">age</label>
-                            <input id="aiAge" name="age" type="number" min="29" max="77" step="1" required>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiSex">sex (source code)</label>
-                            <select id="aiSex" name="sex" required>
-                                <option value="">Select</option><option value="0">0</option><option value="1">1</option>
-                            </select>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiCp">cp (source code)</label>
-                            <select id="aiCp" name="cp" required>
-                                <option value="">Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
-                            </select>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiTrestbps">trestbps</label>
-                            <input id="aiTrestbps" name="trestbps" type="number" min="94" max="200" step="any" required>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiChol">chol</label>
-                            <input id="aiChol" name="chol" type="number" min="126" max="564" step="any" required>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiFbs">fbs (source code)</label>
-                            <select id="aiFbs" name="fbs" required>
-                                <option value="">Select</option><option value="0">0</option><option value="1">1</option>
-                            </select>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiRestecg">restecg (source code)</label>
-                            <select id="aiRestecg" name="restecg" required>
-                                <option value="">Select</option><option value="0">0</option><option value="1">1</option><option value="2">2</option>
-                            </select>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiThalach">thalach</label>
-                            <input id="aiThalach" name="thalach" type="number" min="71" max="202" step="any" required>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiExang">exang (source code)</label>
-                            <select id="aiExang" name="exang" required>
-                                <option value="">Select</option><option value="0">0</option><option value="1">1</option>
-                            </select>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiOldpeak">oldpeak</label>
-                            <input id="aiOldpeak" name="oldpeak" type="number" min="0" max="6.2" step="0.1" required>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiSlope">slope (source code)</label>
-                            <select id="aiSlope" name="slope" required>
-                                <option value="">Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-                            </select>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiCa">ca (source code)</label>
-                            <select id="aiCa" name="ca" required>
-                                <option value="">Select</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
-                            </select>
-                        </div>
-                        <div class="ai-field">
-                            <label for="aiThal">thal (source code)</label>
-                            <select id="aiThal" name="thal" required>
-                                <option value="">Select</option><option value="3">3</option><option value="6">6</option><option value="7">7</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="ai-form-actions">
-                        <button id="aiSubmitBtn" class="ai-submit-btn" type="submit">Run Academic Classification</button>
-                        <button id="aiResetBtn" class="ai-reset-btn" type="button">Clear</button>
-                    </div>
-                    <p id="aiValidationMessage" class="ai-message" role="alert" aria-live="polite"></p>
-                    <div id="aiPredictionResult" class="ai-result" role="status" aria-live="polite" hidden></div>
-                    <section id="aiExplanation" class="ai-explanation" aria-labelledby="aiExplanationTitle" hidden>
-                        <h3 id="aiExplanationTitle">Model feature contributions</h3>
-                        <p id="aiExplanationNote" class="ai-explanation-note">These signed values describe how the model used the submitted feature values. They do not describe biological causes or clinical importance.</p>
-                        <div id="aiExplanationList" class="ai-explanation-list" role="list" aria-label="Model feature contribution list"></div>
-                    </section>
-                    <section id="aiReportsPanel" class="ai-reports-panel" aria-labelledby="aiReportsTitle">
-                        <div class="ai-reports-header">
-                            <div>
-                                <h3 id="aiReportsTitle">Authorized Academic Reports</h3>
-                                <p>Reports are limited to predictions requested by this doctor. Patient prediction history is not available.</p>
-                            </div>
-                            <button id="viewAiReportsButton" class="ai-reports-button" type="button" aria-expanded="false" aria-controls="aiReportsList">View Reports</button>
-                        </div>
-                        <p id="aiReportsStatus" class="ai-reports-status" role="status" aria-live="polite" hidden></p>
-                        <div id="aiReportsList" class="ai-reports-list" role="list" hidden></div>
-                    </section>
-                </form>
+                </a>
 
 
             </div>

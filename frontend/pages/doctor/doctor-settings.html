@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Doctor | Settings</title>
+    <link rel="stylesheet" href="../../css/doctor/doctor-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="logo"><i class="fa-solid fa-heart-pulse"></i><h2>MediCare</h2></div>
+    <nav aria-label="Doctor navigation">
+        <a href="doctor-dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+        <a href="doctor-patients.html"><i class="fa-solid fa-users"></i><span>My Patients</span></a>
+        <a href="doctor-appointments.html"><i class="fa-solid fa-calendar-check"></i><span>Appointments</span></a>
+        <a href="doctor-medical-reports.html"><i class="fa-solid fa-file-medical"></i><span>Medical Reports</span></a>
+        <a href="doctor-prescriptions.html"><i class="fa-solid fa-prescription-bottle-medical"></i><span>Prescriptions</span></a>
+        <a href="doctor-clinical-tools.html"><i class="fa-solid fa-stethoscope"></i><span>Clinical Tools</span></a>
+        <a href="doctor-ai-assistant.html"><i class="fa-solid fa-robot"></i><span>AI Assistant</span></a>
+        <a href="doctor-settings.html" class="active"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+        <a href="../auth/login.html" class="logout"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+    </nav>
+</aside>
+
+<main class="main">
+    <div class="topbar">
+        <div class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="patientSearch" placeholder="Search patients...">
+        </div>
+        <div class="profile">
+            <div class="notification"><i class="fa-solid fa-bell"></i><span>3</span></div>
+            <div class="doctor-profile">
+                <img src="https://i.pravatar.cc/100?img=12" alt="Doctor">
+                <div><strong id="doctorName">Loading...</strong><small id="doctorSpecialization">Loading...</small></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="page-title-row">
+        <div>
+            <h1>Settings</h1>
+            <p>Your account profile. Editable settings are not available in this release.</p>
+        </div>
+    </section>
+
+    <section class="content-single">
+        <div class="patients-panel">
+            <div class="section-header">
+                <div>
+                    <h2>Profile</h2>
+                    <p>Read-only. Contact an administrator to change these details.</p>
+                </div>
+            </div>
+            <div class="table-container" id="doctorProfileTable">
+                <p class="clinical-records-status">Loading profile…</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../../js/auth/auth-client.js"></script>
+<script src="../../js/doctor/doctor-dashboard.js"></script>
+<script src="../../js/doctor/doctor-settings.js"></script>
+</body>
+</html>

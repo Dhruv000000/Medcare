@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Doctor | Clinical Tools</title>
+    <link rel="stylesheet" href="../../css/doctor/doctor-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="logo"><i class="fa-solid fa-heart-pulse"></i><h2>MediCare</h2></div>
+    <nav aria-label="Doctor navigation">
+        <a href="doctor-dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+        <a href="doctor-patients.html"><i class="fa-solid fa-users"></i><span>My Patients</span></a>
+        <a href="doctor-appointments.html"><i class="fa-solid fa-calendar-check"></i><span>Appointments</span></a>
+        <a href="doctor-medical-reports.html"><i class="fa-solid fa-file-medical"></i><span>Medical Reports</span></a>
+        <a href="doctor-prescriptions.html"><i class="fa-solid fa-prescription-bottle-medical"></i><span>Prescriptions</span></a>
+        <a href="doctor-clinical-tools.html" class="active"><i class="fa-solid fa-stethoscope"></i><span>Clinical Tools</span></a>
+        <a href="doctor-ai-assistant.html"><i class="fa-solid fa-robot"></i><span>AI Assistant</span></a>
+        <a href="doctor-settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+        <a href="../auth/login.html" class="logout"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+    </nav>
+</aside>
+
+<main class="main">
+    <div class="topbar">
+        <div class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="patientSearch" placeholder="Search patients...">
+        </div>
+        <div class="profile">
+            <div class="notification"><i class="fa-solid fa-bell"></i><span>3</span></div>
+            <div class="doctor-profile">
+                <img src="https://i.pravatar.cc/100?img=12" alt="Doctor">
+                <div><strong id="doctorName">Loading...</strong><small id="doctorSpecialization">Loading...</small></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="page-title-row">
+        <div>
+            <h1>Clinical Tools</h1>
+            <p>Pick an authorized patient below to add a medical record, report, or prescription.</p>
+        </div>
+    </section>
+
+    <section class="content-single">
+        <div class="patients-panel" id="patientsPanel">
+            <div class="section-header">
+                <div>
+                    <h2>Select a Patient</h2>
+                    <p>Click "View" to open the clinical workflow for that patient.</p>
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="patientTable">
+                    <thead>
+                        <tr><th>Patient</th><th>Age</th><th>Condition</th><th>Last Visit</th><th>Status</th><th>Action</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" class="empty-state">Loading authorized patients…</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="modal-overlay" id="doctorClinicalRecordsModal" aria-hidden="true">
+    <div class="modal doctor-clinical-record-modal" role="dialog" aria-modal="true" aria-labelledby="doctorClinicalRecordsTitle">
+        <div class="modal-header">
+            <div>
+                <h3 id="doctorClinicalRecordsTitle">Authorized Clinical Records</h3>
+                <p id="doctorClinicalRecordsPatient" class="modal-subtitle">Appointment-scoped patient records</p>
+            </div>
+            <button class="modal-close" id="closeDoctorClinicalRecordsModal" type="button" aria-label="Close clinical records">&times;</button>
+        </div>
+        <div class="modal-body" id="doctorClinicalRecordsContent" aria-live="polite">
+            <p class="clinical-records-status">Select an authorized patient to view records.</p>
+        </div>
+        <section id="phase26ClinicalWorkflow" class="phase26-clinical-workflow" hidden aria-labelledby="phase26ClinicalWorkflowTitle">
+            <div class="phase26-workflow-header">
+                <div>
+                    <h4 id="phase26ClinicalWorkflowTitle">Clinical workflow actions</h4>
+                    <p>For the selected appointment-authorized patient. The server re-checks patient, doctor, appointment, and record authorization.</p>
+                </div>
+            </div>
+            <p id="phase26WorkflowStatus" class="clinical-records-status" role="status" aria-live="polite" hidden></p>
+            <form id="phase26ClinicalForm" novalidate>
+                <div class="phase26-form-grid">
+                    <div class="ai-field">
+                        <label for="phase26WorkflowType">Workflow</label>
+                        <select id="phase26WorkflowType" name="workflow_type">
+                            <option value="record">Add medical record</option>
+                            <option value="report">Add medical report</option>
+                            <option value="prescription">Add prescription</option>
+                        </select>
+                    </div>
+                    <div class="ai-field">
+                        <label for="phase26AppointmentId">Appointment</label>
+                        <select id="phase26AppointmentId" name="appointment_id">
+                            <option value="">No appointment link</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="phase26RecordFields" class="phase26-workflow-fields">
+                    <div class="phase26-form-grid">
+                        <div class="ai-field"><label for="phase26RecordType">Record type</label><select id="phase26RecordType" name="record_type"><option value="lab_test">Lab Test</option><option value="consultation">Consultation</option><option value="imaging">Imaging</option><option value="prescription">Prescription</option><option value="other">Other</option></select></div>
+                        <div class="ai-field"><label for="phase26RecordDate">Occurred on</label><input id="phase26RecordDate" name="occurred_on" type="date" required></div>
+                    </div>
+                    <div class="ai-field"><label for="phase26Diagnosis">Diagnosis or record title</label><input id="phase26Diagnosis" name="diagnosis" maxlength="255" required></div>
+                    <div class="ai-field"><label for="phase26RecordNotes">Notes</label><textarea id="phase26RecordNotes" name="notes" rows="3"></textarea></div>
+                </div>
+                <div id="phase26ReportFields" class="phase26-workflow-fields" hidden>
+                    <div class="phase26-form-grid">
+                        <div class="ai-field"><label for="phase26ReportTitle">Report title</label><input id="phase26ReportTitle" name="title" maxlength="255"></div>
+                        <div class="ai-field"><label for="phase26ReportType">Report type</label><select id="phase26ReportType" name="report_type"><option value="blood_test">Blood Test</option><option value="imaging">Imaging</option><option value="ecg">ECG</option><option value="urine_test">Urine Test</option><option value="other">Other</option></select></div>
+                        <div class="ai-field"><label for="phase26ReportDate">Report date</label><input id="phase26ReportDate" name="report_date" type="date"></div>
+                        <div class="ai-field"><label for="phase26ReportStatus">Status</label><select id="phase26ReportStatus" name="status"><option value="pending">Pending</option><option value="normal">Normal</option><option value="abnormal">Abnormal</option></select></div>
+                    </div>
+                    <div class="ai-field"><label for="phase26Laboratory">Laboratory name</label><input id="phase26Laboratory" name="laboratory_name" maxlength="255"></div>
+                    <div class="ai-field"><label for="phase26ReportSummary">Summary</label><textarea id="phase26ReportSummary" name="summary" rows="2"></textarea></div>
+                    <div class="ai-field"><label for="phase26Interpretation">Interpretation</label><textarea id="phase26Interpretation" name="interpretation" rows="2"></textarea></div>
+                    <div class="phase26-form-grid">
+                        <div class="ai-field"><label for="phase26FindingLabel">Finding label (optional)</label><input id="phase26FindingLabel" name="finding_label" maxlength="255"></div>
+                        <div class="ai-field"><label for="phase26FindingValue">Finding value (optional)</label><input id="phase26FindingValue" name="finding_value" maxlength="255"></div>
+                    </div>
+                    <label class="phase26-checkbox"><input id="phase26FindingNormal" type="checkbox" checked> Finding is normal</label>
+                    <div class="ai-field"><label for="phase26MedicalRecordId">Link existing medical record (optional)</label><select id="phase26MedicalRecordId" name="medical_record_id"><option value="">No record link</option></select></div>
+                </div>
+                <div id="phase26PrescriptionFields" class="phase26-workflow-fields" hidden>
+                    <div class="phase26-form-grid">
+                        <div class="ai-field"><label for="phase26PrescriptionStatus">Status</label><select id="phase26PrescriptionStatus" name="status"><option value="active">Active</option><option value="refill_needed">Refill Needed</option><option value="completed">Completed</option></select></div>
+                        <div class="ai-field"><label for="phase26IssuedOn">Issued on</label><input id="phase26IssuedOn" name="issued_on" type="date"></div>
+                        <div class="ai-field"><label for="phase26StartDate">Start date</label><input id="phase26StartDate" name="start_date" type="date"></div>
+                        <div class="ai-field"><label for="phase26EndDate">End date (optional)</label><input id="phase26EndDate" name="end_date" type="date"></div>
+                    </div>
+                    <div class="phase26-form-grid">
+                        <div class="ai-field"><label for="phase26Medicine">Medicine</label><input id="phase26Medicine" name="medicine" maxlength="255"></div>
+                        <div class="ai-field"><label for="phase26Dosage">Dosage</label><input id="phase26Dosage" name="dosage" maxlength="120"></div>
+                        <div class="ai-field"><label for="phase26Frequency">Frequency</label><input id="phase26Frequency" name="frequency" maxlength="120"></div>
+                        <div class="ai-field"><label for="phase26Duration">Duration (optional)</label><input id="phase26Duration" name="duration" maxlength="120"></div>
+                    </div>
+                    <div class="ai-field"><label for="phase26Instructions">Instructions</label><textarea id="phase26Instructions" name="instructions" rows="2"></textarea></div>
+                    <div class="ai-field"><label for="phase26SideEffects">Side effects (optional)</label><textarea id="phase26SideEffects" name="side_effects" rows="2"></textarea></div>
+                </div>
+                <div class="phase26-workflow-actions">
+                    <button id="phase26Submit" class="primary-btn" type="submit">Save clinical entry</button>
+                    <button id="phase26Reset" class="view-btn" type="reset">Clear</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../../js/auth/auth-client.js"></script>
+<script src="../../js/doctor/doctor-dashboard.js"></script>
+</body>
+</html>

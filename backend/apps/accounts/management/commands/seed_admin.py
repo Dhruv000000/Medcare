@@ -23,6 +23,12 @@ class Command(BaseCommand):
         parser.add_argument("--password", default=os.environ.get("ADMIN_SEED_PASSWORD", ""))
         parser.add_argument("--first-name", default=os.environ.get("ADMIN_SEED_FIRST_NAME", "Admin"))
         parser.add_argument("--last-name", default=os.environ.get("ADMIN_SEED_LAST_NAME", "User"))
+        parser.add_argument(
+            "--force",
+            action="store_true",
+            default=os.environ.get("ADMIN_SEED_FORCE", "").lower() in {"1", "true", "yes"},
+            help="Skip Django's password strength checks (length/common-password/etc). Use only for local/demo credentials.",
+        )
 
     def handle(self, *args, **options):
         email = User.objects.normalize_email(options["email"]).lower().strip() if options["email"] else ""
@@ -33,10 +39,15 @@ class Command(BaseCommand):
                 "(or set ADMIN_SEED_EMAIL / ADMIN_SEED_PASSWORD)."
             )
 
-        try:
-            password_validation.validate_password(password)
-        except DjangoValidationError as exc:
-            raise CommandError("; ".join(exc.messages)) from exc
+        if not options["force"]:
+            try:
+                password_validation.validate_password(password)
+            except DjangoValidationError as exc:
+                raise CommandError(
+                    "; ".join(exc.messages) + " Pass --force to use this password anyway (local/demo only)."
+                ) from exc
+        elif len(password) < 4:
+            raise CommandError("Password must be at least 4 characters, even with --force.")
 
         user, created = User.objects.get_or_create(
             email=email,
