@@ -20,9 +20,9 @@ services:
       - key: DJANGO_SECRET_KEY
         generateValue: true
       - key: ALLOWED_HOSTS
-        value: medicare-backend.onrender.com
+        value: medicare-backend-33rk.onrender.com
       - key: FRONTEND_ALLOWED_ORIGINS
-        value: https://medicare-backend.onrender.com
+        value: https://medicare-backend-33rk.onrender.com
       - key: ADMIN_REGISTRATION_CODE
         sync: false
       - key: DB_NAME
