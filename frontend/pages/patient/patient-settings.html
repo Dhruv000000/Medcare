@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare | Settings</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/patient/patient-settings.css">
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="logo-text">
+                <h2>MediCare</h2>
+                <span>Clinical Intelligence</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <p class="nav-title">MENU</p>
+            <a href="patient-dashboard.html" class="nav-item">
+                <i class="fa-solid fa-house"></i><span>Dashboard</span>
+            </a>
+            <a href="patient-appointments.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i><span>Appointments</span>
+            </a>
+            <a href="patient-medical-records.html" class="nav-item">
+                <i class="fa-solid fa-file-medical"></i><span>Medical Records</span>
+            </a>
+            <a href="patient-prescriptions.html" class="nav-item">
+                <i class="fa-solid fa-pills"></i><span>Prescriptions</span>
+            </a>
+            <a href="patient-reports.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i><span>Reports</span>
+            </a>
+            <a href="patient-ai-insights.html" class="nav-item">
+                <i class="fa-solid fa-brain"></i><span>AI Health Insights</span>
+            </a>
+            <p class="nav-title settings-title">ACCOUNT</p>
+            <a href="patient-settings.html" class="nav-item active">
+                <i class="fa-solid fa-gear"></i><span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="../auth/login.html" class="nav-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+            </a>
+            <div class="user-mini">
+                <div class="avatar" id="sidebarAvatar">SJ</div>
+                <div class="user-info">
+                    <strong id="sidebarName">Sanskar Jadhav</strong>
+                    <span>Patient</span>
+                </div>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="mobile-logo">
+                <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                <strong>MediCare</strong>
+            </div>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="pageSearch" placeholder="Search...">
+            </div>
+            <div class="topbar-actions">
+                <button class="icon-button" id="themeToggle" title="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-button notification" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+                <div class="profile">
+                    <div class="avatar" id="topbarAvatar">SJ</div>
+                    <div class="profile-text">
+                        <strong id="topbarName">Sanskar Jadhav</strong>
+                        <span>Patient</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <div class="page-container">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">PATIENT PORTAL</span>
+                    <h1>Settings</h1>
+                    <p>Manage your account and preferences</p>
+                </div>
+            </div>
+
+            <div class="settings-layout">
+                <!-- Settings Tabs -->
+                <div class="settings-tabs">
+                    <button class="settings-tab active" data-tab="profile">
+                        <i class="fa-regular fa-user"></i> Profile
+                    </button>
+                    <button class="settings-tab" data-tab="security">
+                        <i class="fa-solid fa-shield-halved"></i> Security
+                    </button>
+                    <button class="settings-tab" data-tab="notifications">
+                        <i class="fa-regular fa-bell"></i> Notifications
+                    </button>
+                    <button class="settings-tab" data-tab="appearance">
+                        <i class="fa-solid fa-palette"></i> Appearance
+                    </button>
+                </div>
+
+                <!-- Settings Content -->
+                <div class="settings-content">
+                    
+                    <!-- Profile Tab -->
+                    <div class="tab-pane active" id="profile">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Profile Information</h3>
+                                <p>Update your personal details here.</p>
+                            </div>
+                            <div class="profile-photo-section">
+                                <div class="avatar-large" id="profileAvatarLarge">SJ</div>
+                                <div class="photo-actions">
+                                    <button class="btn-primary" id="changePhotoBtn">Change Photo</button>
+                                    <p>JPG, GIF or PNG. Max size of 800K</p>
+                                </div>
+                            </div>
+                            
+                            <form id="profileForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone</label>
+                                        <input type="tel" id="phone" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="dob">Date of Birth</label>
+                                        <input type="date" id="dob">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gender">Gender</label>
+                                        <select id="gender">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="bloodGroup">Blood Group</label>
+                                        <select id="bloodGroup">
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <textarea id="address" rows="3"></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div class="tab-pane" id="security">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Password & Security</h3>
+                                <p>Manage your password and security settings.</p>
+                            </div>
+                            <form id="passwordForm">
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <div class="password-input">
+                                        <input type="password" id="newPassword" required>
+                                        <i class="fa-regular fa-eye-slash toggle-password" data-target="newPassword"></i>
+                                    </div>
+                                    <div class="password-strength-container">
+                                        <div class="strength-bar-track">
+                                            <div class="strength-fill" id="strengthFill"></div>
+                                        </div>
+                                        <span class="strength-label" id="strengthLabel">Strength: None</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirm New Password</label>
+                                    <div class="password-input">
+                                        <input type="password" id="confirmPassword" required>
+                                        <i class="fa-regular fa-eye-slash toggle-password" data-target="confirmPassword"></i>
+                                    </div>
+                                    <span class="error-msg" id="passwordError"></span>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Update Password</button>
+                                </div>
+                            </form>
+
+                            <hr class="card-divider">
+
+                            <div class="security-item">
+                                <div>
+                                    <h4>Two-Factor Authentication</h4>
+                                    <p>Add an extra layer of security to your account.</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorToggle">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Tab -->
+                    <div class="tab-pane" id="notifications">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Notification Preferences</h3>
+                                <p>Control how and when you receive notifications.</p>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item">
+                                    <div class="notification-info">
+                                        <h4>Appointment Reminders</h4>
+                                        <p>Get notified before your upcoming appointments.</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="notifAppointment" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-info">
+                                        <h4>Lab Report Alerts</h4>
+                                        <p>Receive alerts when your test results are ready.</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="notifLab" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-info">
+                                        <h4>Prescription Refill Reminders</h4>
+                                        <p>Reminders to refill your active prescriptions.</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="notifPrescription" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-info">
+                                        <h4>Health Tips</h4>
+                                        <p>Weekly health and wellness tips.</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="notifTips">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-info">
+                                        <h4>Newsletter</h4>
+                                        <p>Monthly updates from MediCare.</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="notifNewsletter">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <hr class="card-divider">
+
+                            <div class="notification-method">
+                                <h4>Notification Method</h4>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="notifMethod" value="email" checked>
+                                        <span>Email</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="notifMethod" value="sms">
+                                        <span>SMS</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="notifMethod" value="both">
+                                        <span>Both Email & SMS</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-actions" style="margin-top: 20px;">
+                                <button class="btn-primary" id="saveNotifBtn">Save Preferences</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Appearance Tab -->
+                    <div class="tab-pane" id="appearance">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Appearance Settings</h3>
+                                <p>Customize how MediCare looks on your device.</p>
+                            </div>
+                            
+                            <div class="appearance-section">
+                                <h4>Theme</h4>
+                                <div class="theme-options">
+                                    <div class="theme-card active" data-theme="light">
+                                        <div class="theme-preview light-preview">
+                                            <div class="preview-sidebar"></div>
+                                            <div class="preview-main">
+                                                <div class="preview-header"></div>
+                                                <div class="preview-content"></div>
+                                            </div>
+                                        </div>
+                                        <span>Light Mode</span>
+                                    </div>
+                                    <div class="theme-card" data-theme="dark">
+                                        <div class="theme-preview dark-preview">
+                                            <div class="preview-sidebar"></div>
+                                            <div class="preview-main">
+                                                <div class="preview-header"></div>
+                                                <div class="preview-content"></div>
+                                            </div>
+                                        </div>
+                                        <span>Dark Mode</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <hr class="card-divider">
+
+                            <div class="appearance-section">
+                                <h4>Font Size</h4>
+                                <div class="radio-group font-size-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="fontSize" value="small">
+                                        <span>Small</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="fontSize" value="medium" checked>
+                                        <span>Medium</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="fontSize" value="large">
+                                        <span>Large</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-actions" style="margin-top: 20px;">
+                                <button class="btn-primary" id="saveAppearanceBtn">Save Appearance</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Danger Zone (Always visible at bottom) -->
+            <div class="card danger-zone">
+                <div class="card-header">
+                    <h3>Danger Zone</h3>
+                    <p>Irreversible and destructive actions.</p>
+                </div>
+                <div class="danger-actions">
+                    <button class="btn-secondary" id="logoutAllBtn">Log Out of All Devices</button>
+                    <button class="btn-danger" id="deleteAccountBtn">Delete Account</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/patient/patient-settings.js"></script>
+</body>
+</html>

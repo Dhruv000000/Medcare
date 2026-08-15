@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MediCare - Register</title>
+
+    <link rel="stylesheet" href="../../css/auth/register.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+
+        <!-- =================================================
+             LEFT PANEL
+        ================================================== -->
+
+        <section class="left">
+
+            <div class="left-content">
+
+                <!-- LOGO -->
+
+                <div class="logo">
+
+                    <i class="fa-solid fa-heart-pulse"></i>
+
+                    <h1>MediCare</h1>
+
+                </div>
+
+
+                <!-- HEADING -->
+
+                <h2>
+                    Create Your Account
+                </h2>
+
+
+                <!-- DESCRIPTION -->
+
+                <p class="description">
+
+                    Join MediCare and securely manage your health,
+                    access AI-powered diagnosis, connect with doctors,
+                    and keep your medical records in one place.
+
+                </p>
+
+
+                <!-- DECORATIVE LINE -->
+
+                <div class="glow-line"></div>
+
+
+                <!-- FEATURES -->
+
+                <div class="features">
+
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-shield-heart"></i>
+
+                        <span>
+                            Secure<br>
+                            Medical Records
+                        </span>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-brain"></i>
+
+                        <span>
+                            AI Clinical<br>
+                            Support
+                        </span>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <i class="fa-solid fa-user-doctor"></i>
+
+                        <span>
+                            Certified<br>
+                            Doctors
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RIGHT PANEL
+        ================================================== -->
+
+        <section class="right">
+
+
+            <div class="register-card">
+
+
+                <!-- =================================================
+                     ROLE SELECTION
+                ================================================== -->
+
+                <div class="roles">
+
+
+                    <!-- PATIENT -->
+
+                    <div class="role active"
+                         data-role="Patient"
+                         tabindex="0"
+                         aria-pressed="true">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <span>
+                            Patient
+                        </span>
+
+                    </div>
+
+
+                    <!-- DOCTOR -->
+
+                    <div class="role"
+                         data-role="Doctor"
+                         tabindex="0"
+                         aria-pressed="false">
+
+                        <i class="fa-solid fa-user-doctor"></i>
+
+                        <span>
+                            Doctor
+                        </span>
+
+                    </div>
+
+
+                    <!-- ADMIN -->
+
+                    <div class="role"
+                         data-role="Admin"
+                         tabindex="0"
+                         aria-pressed="false">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                        <span>
+                            Admin
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     FORM
+                ================================================== -->
+
+                <form id="registerForm"
+                      novalidate>
+
+
+                    <input
+                        type="hidden"
+                        id="roleInput"
+                        value="Patient">
+
+
+                    <!-- STATUS -->
+
+                    <p class="form-status"></p>
+
+
+                    <!-- =================================================
+                         FORM GRID
+                    ================================================== -->
+
+                    <div class="form-grid">
+
+
+                        <!-- FIRST NAME -->
+
+                        <div class="input-box">
+
+                            <label for="firstname">
+                                First Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="firstname"
+                                placeholder="First Name"
+                                autocomplete="given-name">
+
+                        </div>
+
+
+                        <!-- LAST NAME -->
+
+                        <div class="input-box">
+
+                            <label for="lastname">
+                                Last Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="lastname"
+                                placeholder="Last Name"
+                                autocomplete="family-name">
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="input-box">
+
+                            <label for="email">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Email address"
+                                autocomplete="email">
+
+                        </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="input-box">
+
+                            <label for="phone">
+                                Phone
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="10-digit phone number"
+                                maxlength="10"
+                                autocomplete="tel">
+
+                        </div>
+
+
+                        <!-- DATE OF BIRTH -->
+
+                        <div class="input-box">
+
+                            <label for="dob">
+                                Date of Birth
+                            </label>
+
+                            <input
+                                type="date"
+                                id="dob">
+
+                        </div>
+
+
+                        <!-- GENDER -->
+
+                        <div class="input-box">
+
+                            <label for="gender">
+                                Gender
+                            </label>
+
+                            <select id="gender">
+
+                                <option value="">
+                                    Select Gender
+                                </option>
+
+                                <option value="Male">
+                                    Male
+                                </option>
+
+                                <option value="Female">
+                                    Female
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- DOCTOR ID -->
+
+                        <div class="input-box doctor-field">
+
+                            <label for="doctorID">
+                                Medical License ID
+                            </label>
+
+                            <input
+                                type="text"
+                                id="doctorID"
+                                placeholder="Medical License ID">
+
+                        </div>
+
+
+                        <!-- ADMIN CODE -->
+
+                        <div class="input-box admin-field">
+
+                            <label for="adminCode">
+                                Admin Code
+                            </label>
+
+                            <input
+                                type="text"
+                                id="adminCode"
+                                placeholder="Admin Code">
+
+                        </div>
+
+
+                        <!-- PASSWORD -->
+
+                        <div class="input-box">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <div class="password">
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Password"
+                                    autocomplete="new-password">
+
+                                <i
+                                    class="fa-solid fa-eye"
+                                    id="togglePassword">
+                                </i>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONFIRM PASSWORD -->
+
+                        <div class="input-box">
+
+                            <label for="confirmPassword">
+                                Confirm Password
+                            </label>
+
+                            <div class="password">
+
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Confirm Password"
+                                    autocomplete="new-password">
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         REGISTER BUTTON
+                    ================================================== -->
+
+                    <button
+                        type="submit"
+                        id="registerButton">
+
+                        Create Account
+
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- LOGIN -->
+
+                <div class="bottom-text">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/auth/register.js"></script>
+
+</body>
+
+</html>

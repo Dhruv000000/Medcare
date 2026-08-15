@@ -1,0 +1,148 @@
+{
+  "categorical_values": {
+    "ca": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "cp": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "exang": [
+      0,
+      1
+    ],
+    "fbs": [
+      0,
+      1
+    ],
+    "restecg": [
+      0,
+      1,
+      2
+    ],
+    "sex": [
+      0,
+      1
+    ],
+    "slope": [
+      1,
+      2,
+      3
+    ],
+    "thal": [
+      3,
+      6,
+      7
+    ]
+  },
+  "cleaning_decisions": {
+    "duplicates": "Counted and reported; no exact duplicate rows were removed before split unless manifest says otherwise",
+    "identifiers": "No identifier columns included in the selected 14-column Cleveland file",
+    "invalid_values": "Reported; training script fails closed if invalid rows remain after the predeclared contract",
+    "missing_values": "Preserved as missing in processed CSV; imputation is fitted inside training pipeline only",
+    "source_file": "Official UCI processed.cleveland.data only",
+    "target": "Explicitly map num == 0 to 0 and num in 1..4 to 1; missing/other target values are invalid"
+  },
+  "dataset": "UCI Heart Disease",
+  "download_source": "https://archive.ics.uci.edu/static/public/45/heart+disease.zip",
+  "dtypes": {
+    "age": "float64",
+    "ca": "float64",
+    "chol": "float64",
+    "cp": "float64",
+    "exang": "float64",
+    "fbs": "float64",
+    "num": "int64",
+    "oldpeak": "float64",
+    "restecg": "float64",
+    "sex": "float64",
+    "slope": "float64",
+    "thal": "float64",
+    "thalach": "float64",
+    "trestbps": "float64"
+  },
+  "duplicate_rows": 0,
+  "feature_columns": [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "invalid_values": {
+    "ca": [],
+    "cp": [],
+    "exang": [],
+    "fbs": [],
+    "num": [],
+    "numeric_nonpositive": {
+      "age": 0,
+      "chol": 0,
+      "thalach": 0,
+      "trestbps": 0
+    },
+    "oldpeak_negative": 0,
+    "restecg": [],
+    "sex": [],
+    "slope": [],
+    "thal": []
+  },
+  "license": "CC BY 4.0",
+  "missing_counts": {
+    "age": 0,
+    "ca": 4,
+    "chol": 0,
+    "cp": 0,
+    "exang": 0,
+    "fbs": 0,
+    "num": 0,
+    "oldpeak": 0,
+    "restecg": 0,
+    "sex": 0,
+    "slope": 0,
+    "thal": 2,
+    "thalach": 0,
+    "trestbps": 0
+  },
+  "normalized_target_distribution": {
+    "0": 164,
+    "1": 139
+  },
+  "official_source": "https://archive.ics.uci.edu/dataset/45/heart+disease",
+  "original_target_distribution": {
+    "0": 164,
+    "1": 55,
+    "2": 36,
+    "3": 35,
+    "4": 13
+  },
+  "original_target_values": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "processed_file": "ai/data/processed/uci_heart_disease_cleveland_processed.csv",
+  "raw_columns": 14,
+  "raw_file": "ai/data/raw/uci_heart_disease_45/processed.cleveland.data",
+  "records": 303,
+  "target_column_normalized": "disease_label_present",
+  "target_column_original": "num",
+  "target_invalid_rows": 0,
+  "target_missing_rows": 0,
+  "uci_id": 45
+}

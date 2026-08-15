@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare | Prescriptions</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../css/patient/patient-prescriptions.css">
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="logo-text">
+                <h2>MediCare</h2>
+                <span>Clinical Intelligence</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <p class="nav-title">MENU</p>
+            <a href="patient-dashboard.html" class="nav-item">
+                <i class="fa-solid fa-house"></i><span>Dashboard</span>
+            </a>
+            <a href="patient-appointments.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i><span>Appointments</span>
+            </a>
+            <a href="patient-medical-records.html" class="nav-item">
+                <i class="fa-solid fa-file-medical"></i><span>Medical Records</span>
+            </a>
+            <a href="patient-prescriptions.html" class="nav-item active">
+                <i class="fa-solid fa-pills"></i><span>Prescriptions</span>
+            </a>
+            <a href="patient-reports.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i><span>Reports</span>
+            </a>
+            <a href="patient-ai-insights.html" class="nav-item">
+                <i class="fa-solid fa-brain"></i><span>AI Health Insights</span>
+            </a>
+            
+            <p class="nav-title settings-title">ACCOUNT</p>
+            <a href="patient-settings.html" class="nav-item">
+                <i class="fa-solid fa-gear"></i><span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="../auth/login.html" class="nav-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+            </a>
+            <div class="user-mini">
+                <div class="avatar" id="sidebarAvatar">SJ</div>
+                <div class="user-info">
+                    <strong id="sidebarName">Sanskar Jadhav</strong>
+                    <span>Patient</span>
+                </div>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="mobile-logo">
+                <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                <strong>MediCare</strong>
+            </div>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="pageSearch" placeholder="Search...">
+            </div>
+            <div class="topbar-actions">
+                <button class="icon-button" id="themeToggle" title="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-button notification" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+                <div class="profile">
+                    <div class="avatar" id="topbarAvatar">SJ</div>
+                    <div class="profile-text">
+                        <strong id="topbarName">Sanskar Jadhav</strong>
+                        <span>Patient</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-container">
+            <div class="page-header-row">
+                <div class="page-heading">
+                    <div>
+                        <span class="eyebrow">PATIENT PORTAL</span>
+                        <h1>Prescriptions</h1>
+                        <p>Your medicines and dosage information</p>
+                    </div>
+                </div>
+                
+                <div class="stats-summary">
+                    <div class="stat-card">
+                        <div class="stat-icon success"><i class="fa-solid fa-pills"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="statActive">0</span>
+                            <span class="stat-label">Active</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon primary"><i class="fa-solid fa-check"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="statCompleted">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon warning"><i class="fa-solid fa-exclamation"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="statRefill">0</span>
+                            <span class="stat-label">Refill Needed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-bar">
+                <button class="tab active" data-tab="active">Active</button>
+                <button class="tab" data-tab="all">All Prescriptions</button>
+            </div>
+
+            <div class="filter-bar">
+                <div class="search-input">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="prescriptionsSearch" placeholder="Search medicine or doctor...">
+                </div>
+                <select id="statusFilter">
+                    <option value="All">All Statuses</option>
+                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Refill Needed">Refill Needed</option>
+                </select>
+            </div>
+
+            <div class="prescriptions-grid" id="prescriptionsGrid">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Details Modal -->
+    <div class="modal-overlay" id="detailsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Prescription Details</h3>
+                <button class="modal-close" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="modalContent">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/patient/patient-prescriptions.js"></script>
+</body>
+</html>

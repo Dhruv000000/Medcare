@@ -1,0 +1,94 @@
+erDiagram
+    USER ||--o| PATIENT_PROFILE : has
+    USER ||--o| DOCTOR_PROFILE : has
+    PATIENT_PROFILE ||--o| PATIENT_PREFERENCES : owns
+    PATIENT_PROFILE ||--o{ APPOINTMENT : books
+    DOCTOR_PROFILE ||--o{ APPOINTMENT : attends
+    PATIENT_PROFILE ||--o{ MEDICAL_RECORD : owns
+    DOCTOR_PROFILE o|--o{ MEDICAL_RECORD : authors
+    APPOINTMENT o|--o{ MEDICAL_RECORD : contextualizes
+    PATIENT_PROFILE ||--o{ PRESCRIPTION : receives
+    DOCTOR_PROFILE ||--o{ PRESCRIPTION : issues
+    PRESCRIPTION ||--|{ PRESCRIPTION_ITEM : contains
+    PATIENT_PROFILE ||--o{ MEDICAL_REPORT : owns
+    DOCTOR_PROFILE o|--o{ MEDICAL_REPORT : authors
+    APPOINTMENT o|--o{ MEDICAL_REPORT : contextualizes
+    MEDICAL_RECORD o|--o{ MEDICAL_REPORT : supports
+    MEDICAL_REPORT ||--o{ REPORT_FINDING : contains
+
+    USER {
+        bigint id PK
+        string email UK
+        string role
+        string first_name
+        string last_name
+    }
+    PATIENT_PROFILE {
+        bigint id PK
+        bigint user_id FK
+        string blood_group
+        text address
+    }
+    DOCTOR_PROFILE {
+        bigint id PK
+        bigint user_id FK
+        string specialization
+        string license_id UK
+    }
+    PATIENT_PREFERENCES {
+        bigint id PK
+        bigint patient_id FK
+        string notification_method
+        string theme
+        string font_size
+    }
+    APPOINTMENT {
+        bigint id PK
+        bigint patient_id FK
+        bigint doctor_id FK
+        date scheduled_date
+        time scheduled_time
+        string status
+    }
+    MEDICAL_RECORD {
+        bigint id PK
+        bigint patient_id FK
+        bigint doctor_id FK
+        bigint appointment_id FK
+        string record_type
+        date occurred_on
+        string diagnosis
+    }
+    PRESCRIPTION {
+        bigint id PK
+        bigint patient_id FK
+        bigint doctor_id FK
+        string status
+        date issued_on
+        date start_date
+        date end_date
+    }
+    PRESCRIPTION_ITEM {
+        bigint id PK
+        bigint prescription_id FK
+        string medicine
+        string dosage
+        string frequency
+    }
+    MEDICAL_REPORT {
+        bigint id PK
+        bigint patient_id FK
+        bigint doctor_id FK
+        bigint appointment_id FK
+        bigint medical_record_id FK
+        string title
+        string report_type
+        string status
+    }
+    REPORT_FINDING {
+        bigint id PK
+        bigint report_id FK
+        string label
+        string value
+        boolean is_normal
+    }

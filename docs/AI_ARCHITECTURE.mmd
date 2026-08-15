@@ -1,0 +1,22 @@
+flowchart TD
+    F[Existing MediCare Frontend\nAI Insights currently deferred]
+    API[Future Django AI API boundary\nNot exposed in Phase 11]
+    AUTH[Session authentication\nrole and ownership authorization]
+    SVC[AI service orchestration\nDjango-independent boundary]
+    PRE[Input validation and\nreproducible preprocessing]
+    MODEL[Versioned model interface\nNo model artifact in Phase 11]
+    EXP[Explainability interface\nConfidence only if calibrated]
+    SAFE[Safety validation\nprohibited-claim checks and disclaimer]
+    RESP[Structured response or\nsafe unsupported error]
+    KB[Deferred approved knowledge base]
+    RAG[Deferred retrieval, provenance,\nembeddings, and vector storage]
+    LLM[Deferred bounded generation\nprovider not specified]
+
+    F --> API --> AUTH --> SVC --> PRE --> MODEL --> EXP --> SAFE --> RESP
+    SVC -. future .-> RAG
+    KB -. future ingestion .-> RAG
+    RAG -. future evidence .-> LLM
+    LLM -. future bounded output .-> SAFE
+
+    classDef deferred fill:#f7f7f7,stroke:#888,stroke-dasharray: 5 5,color:#444;
+    class F,API,MODEL,KB,RAG,LLM deferred;

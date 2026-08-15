@@ -1,0 +1,31 @@
+{
+  "ai_route_count": 1,
+  "all_checks_passed": true,
+  "artifact_sha256": "e548527e51c67a7b611501acc844b367cecdde53413e33914ed9757fb9bae6cd",
+  "checks": {
+    "ai_checksum_preserved": true,
+    "ai_route_scope": true,
+    "bounded_upload_size": true,
+    "conservative_allowlist": true,
+    "csrf_not_exempt": true,
+    "download_route_count": true,
+    "download_routes": true,
+    "filename_sanitization": true,
+    "frontend_download_allowlist": true,
+    "frontend_no_clinical_console": true,
+    "frontend_no_file_persistence": true,
+    "frontend_safe_dom": true,
+    "no_ai_source_touch": true,
+    "no_public_media_route": true,
+    "object_authorization": true,
+    "phase24_upload_validation_wired": true,
+    "protected_file_response": true,
+    "protected_media_root": true,
+    "protected_upload_callable": true,
+    "safe_errors": true,
+    "safe_metadata_only": true,
+    "signature_validation": true
+  },
+  "download_route_count": 4,
+  "phase": 24
+}

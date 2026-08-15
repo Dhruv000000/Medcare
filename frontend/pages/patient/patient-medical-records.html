@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare | Medical Records</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../../css/patient/patient-medical-records.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="logo-text">
+                <h2>MediCare</h2>
+                <span>Clinical Intelligence</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <p class="nav-title">MENU</p>
+            <a href="patient-dashboard.html" class="nav-item">
+                <i class="fa-solid fa-house"></i><span>Dashboard</span>
+            </a>
+            <a href="patient-appointments.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i><span>Appointments</span>
+            </a>
+            <a href="patient-medical-records.html" class="nav-item active">
+                <i class="fa-solid fa-file-medical"></i><span>Medical Records</span>
+            </a>
+            <a href="patient-prescriptions.html" class="nav-item">
+                <i class="fa-solid fa-pills"></i><span>Prescriptions</span>
+            </a>
+            <a href="patient-reports.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i><span>Reports</span>
+            </a>
+            <a href="patient-ai-insights.html" class="nav-item">
+                <i class="fa-solid fa-brain"></i><span>AI Health Insights</span>
+            </a>
+            <p class="nav-title settings-title">ACCOUNT</p>
+            <a href="patient-settings.html" class="nav-item">
+                <i class="fa-solid fa-gear"></i><span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="../auth/login.html" class="nav-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+            </a>
+            <div class="user-mini">
+                <div class="avatar" id="sidebarAvatar">SJ</div>
+                <div class="user-info">
+                    <strong id="sidebarName">Sanskar Jadhav</strong>
+                    <span>Patient</span>
+                </div>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="mobile-logo">
+                <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                <strong>MediCare</strong>
+            </div>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="pageSearch" placeholder="Search...">
+            </div>
+            <div class="topbar-actions">
+                <button class="icon-button" id="themeToggle" title="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-button notification" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+                <div class="profile">
+                    <div class="avatar" id="topbarAvatar">SJ</div>
+                    <div class="profile-text">
+                        <strong id="topbarName">Sanskar Jadhav</strong>
+                        <span>Patient</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-container">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">PATIENT PORTAL</span>
+                    <h1>Medical Records</h1>
+                    <p>Your complete health history</p>
+                </div>
+                <button class="btn-primary" id="btnUploadRecord">
+                    <i class="fa-solid fa-upload"></i> Upload Record
+                </button>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-folder"></i></div>
+                    <div class="stat-info">
+                        <h3>8</h3>
+                        <span>Total Records</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-regular fa-calendar"></i></div>
+                    <div class="stat-info">
+                        <h3>3</h3>
+                        <span>This Year</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-user-doctor"></i></div>
+                    <div class="stat-info">
+                        <h3>4</h3>
+                        <span>Doctors</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Records</h3>
+                    <p>View and manage your medical documents</p>
+                </div>
+                <div class="filter-bar">
+                    <div class="search-input">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search diagnosis, doctor, or type...">
+                    </div>
+                    <select id="typeFilter">
+                        <option value="All">All Types</option>
+                        <option value="Lab Test">Lab Test</option>
+                        <option value="Imaging">Imaging</option>
+                        <option value="Consultation">Consultation</option>
+                        <option value="Prescription">Prescription</option>
+                        <option value="Surgery">Surgery</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table class="records-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Doctor</th>
+                                <th>Diagnosis / Reason</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recordsTableBody">
+                            <!-- JS injected rows -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="recordsMobileContainer" class="records-mobile-container">
+                    <!-- JS injected cards -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Upload Modal -->
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Upload Medical Record</h3>
+                <button class="modal-close" id="closeUploadModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="uploadForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Record Type</label>
+                        <select id="uploadType" required>
+                            <option value="Lab Test">Lab Test</option>
+                            <option value="Imaging">Imaging</option>
+                            <option value="Consultation">Consultation</option>
+                            <option value="Prescription">Prescription</option>
+                            <option value="Surgery">Surgery</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="uploadDate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Doctor Name</label>
+                    <input type="text" id="uploadDoctor" placeholder="e.g. Dr. John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Diagnosis / Reason</label>
+                    <input type="text" id="uploadDiagnosis" placeholder="e.g. Blood Test, X-Ray" required>
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea id="uploadNotes" rows="3" placeholder="Additional notes..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>File</label>
+                    <input type="file" id="uploadFile">
+                </div>
+                <div style="display:flex; justify-content:flex-end; gap: 10px; margin-top: 20px;">
+                    <button type="button" class="btn-secondary" id="btnCancelUpload">Cancel</button>
+                    <button type="submit" class="btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Record Details</h3>
+                <button class="modal-close" id="closeDetailModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="detail-content" id="detailContent">
+                <!-- JS injected details -->
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap: 10px; margin-top: 20px;">
+                <button type="button" class="btn-secondary" id="btnDownloadRecord"><i class="fa-solid fa-download"></i> Download</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Record uploaded successfully!</div>
+
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/patient/patient-medical-records.js"></script>
+</body>
+</html>

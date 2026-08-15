@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Admin Patients</title>
+    <link rel="stylesheet" href="../../css/admin/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body data-admin-page="patients">
+    <aside class="sidebar">
+        <div class="logo"><i class="fa-solid fa-heart-pulse"></i><h2>MediCare</h2></div>
+        <nav aria-label="Admin navigation">
+            <a href="admin-dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+            <a class="active" href="admin-patients.html"><i class="fa-solid fa-users"></i><span>Patients</span></a>
+            <a href="admin-doctors.html"><i class="fa-solid fa-user-doctor"></i><span>Doctors</span></a>
+            <a href="admin-appointments.html"><i class="fa-solid fa-calendar-check"></i><span>Appointments</span></a>
+            <a href="admin-profile.html"><i class="fa-solid fa-user-gear"></i><span>Profile</span></a>
+            <a class="logout" href="../auth/login.html"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+        </nav>
+    </aside>
+    <main class="main">
+        <header class="topbar"><div class="search"><i class="fa-solid fa-users"></i><span>Patient management</span></div><div class="profile"><div class="avatar" id="adminAvatar">A</div><div><strong id="adminName">Loading...</strong><small>Administrator</small></div></div></header>
+        <section class="welcome"><div><h1>Patients</h1><p>View patient account information required for administrative management.</p></div></section>
+        <div id="adminMessage" class="toast" role="status" aria-live="polite"></div>
+        <section class="panel">
+            <div class="panel-header"><h2>Patient accounts</h2><span id="patientCount">Loading...</span></div>
+            <div class="filter-row"><input id="patientSearch" type="search" placeholder="Search name, email, or phone" aria-label="Search patients"><button id="patientSearchButton" class="primary-btn" type="button">Search</button></div>
+        </section>
+        <section class="panel"><div id="patientTable" class="table-wrap"><div class="loading-state">Loading patients...</div></div></section>
+    </main>
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/admin/admin.js"></script>
+</body>
+</html>

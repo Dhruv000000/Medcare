@@ -1,0 +1,32 @@
+{
+  "artifact_sha256": "e548527e51c67a7b611501acc844b367cecdde53413e33914ed9757fb9bae6cd",
+  "checks": {
+    "checksum_verified": true,
+    "fixed_artifact_path": true,
+    "no_patient_data_access": true,
+    "schema_verified": true,
+    "test_split_recreated": true
+  },
+  "metrics": {
+    "accuracy": 0.8852459016393442,
+    "balanced_accuracy": 0.8885281385281385,
+    "confusion_matrix": [
+      [
+        28,
+        5
+      ],
+      [
+        2,
+        26
+      ]
+    ],
+    "f1": 0.8813559322033898,
+    "pr_auc": 0.9634351641401436,
+    "precision": 0.8387096774193549,
+    "recall_sensitivity": 0.9285714285714286,
+    "roc_auc": 0.9664502164502166,
+    "specificity": 0.8484848484848485
+  },
+  "model_version": "uci-heart-disease-logreg-v1.0.0",
+  "test_records": 61
+}

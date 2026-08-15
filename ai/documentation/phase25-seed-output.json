@@ -1,0 +1,13 @@
+{
+  "password": "Phase24-Smoke-Password-123!",
+  "patient": "phase24.patient@example.test",
+  "other_patient": "phase24.other.patient@example.test",
+  "doctor": "phase24.doctor@example.test",
+  "other_doctor": "phase24.other.doctor@example.test",
+  "admin": "phase24.admin@example.test",
+  "record_id": 1,
+  "report_id": 1,
+  "other_record_id": 2,
+  "record_download": "/api/patient/medical-records/1/download/",
+  "doctor_record_download": "/api/doctor/medical-records/1/download/"
+}

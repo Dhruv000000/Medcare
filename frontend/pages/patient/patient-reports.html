@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare | Reports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../css/patient/patient-reports.css">
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="logo-text">
+                <h2>MediCare</h2>
+                <span>Clinical Intelligence</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <p class="nav-title">MENU</p>
+            <a href="patient-dashboard.html" class="nav-item">
+                <i class="fa-solid fa-house"></i><span>Dashboard</span>
+            </a>
+            <a href="patient-appointments.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i><span>Appointments</span>
+            </a>
+            <a href="patient-medical-records.html" class="nav-item">
+                <i class="fa-solid fa-file-medical"></i><span>Medical Records</span>
+            </a>
+            <a href="patient-prescriptions.html" class="nav-item">
+                <i class="fa-solid fa-pills"></i><span>Prescriptions</span>
+            </a>
+            <a href="patient-reports.html" class="nav-item active">
+                <i class="fa-solid fa-chart-line"></i><span>Reports</span>
+            </a>
+            <a href="patient-ai-insights.html" class="nav-item">
+                <i class="fa-solid fa-brain"></i><span>AI Health Insights</span>
+            </a>
+            <p class="nav-title settings-title">ACCOUNT</p>
+            <a href="patient-settings.html" class="nav-item">
+                <i class="fa-solid fa-gear"></i><span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="../auth/login.html" class="nav-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+            </a>
+            <div class="user-mini">
+                <div class="avatar" id="sidebarAvatar">SJ</div>
+                <div class="user-info">
+                    <strong id="sidebarName">Sanskar Jadhav</strong>
+                    <span>Patient</span>
+                </div>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="mobile-logo">
+                <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                <strong>MediCare</strong>
+            </div>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="pageSearch" placeholder="Search...">
+            </div>
+            <div class="topbar-actions">
+                <button class="icon-button" id="themeToggle" title="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-button notification" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+                <div class="profile">
+                    <div class="avatar" id="topbarAvatar">SJ</div>
+                    <div class="profile-text">
+                        <strong id="topbarName">Sanskar Jadhav</strong>
+                        <span>Patient</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <div class="page-container">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">PATIENT PORTAL</span>
+                    <h1>My Reports</h1>
+                    <p>Medical test results and diagnostic reports</p>
+                </div>
+                <button class="btn-primary" id="btnUploadReport">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Upload Report
+                </button>
+            </div>
+
+            <!-- STATS ROW -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon total"><i class="fa-solid fa-file-medical"></i></div>
+                    <div class="stat-info">
+                        <h4 id="statTotal">0</h4>
+                        <p>Total Reports</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon normal"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="stat-info">
+                        <h4 id="statNormal">0</h4>
+                        <p>Normal</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon attention"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="stat-info">
+                        <h4 id="statNeedsAttention">0</h4>
+                        <p>Needs Attention</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FILTER BAR -->
+            <div class="filter-bar">
+                <div class="search-input">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="filterSearch" placeholder="Search by report name or doctor...">
+                </div>
+                <select id="filterType">
+                    <option value="All">All Types</option>
+                    <option value="Blood Test">Blood Test</option>
+                    <option value="Imaging">Imaging</option>
+                    <option value="ECG">ECG</option>
+                    <option value="Urine Test">Urine Test</option>
+                    <option value="Other">Other</option>
+                </select>
+                <select id="filterStatus">
+                    <option value="All">All Statuses</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Abnormal">Abnormal</option>
+                    <option value="Pending">Pending</option>
+                </select>
+            </div>
+
+            <!-- REPORTS GRID -->
+            <div class="reports-grid" id="reportsGrid">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </main>
+
+    <!-- VIEW REPORT MODAL -->
+    <div class="modal-overlay" id="viewReportModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Report Details</h3>
+                <button class="modal-close" id="closeViewModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="viewReportContent">
+                <!-- Dynamically populated -->
+            </div>
+            <div class="modal-footer">
+                <button id="btnDownloadReport" class="btn-primary" type="button" disabled aria-disabled="true">
+                    <i class="fa-solid fa-download"></i> Download Report
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- UPLOAD REPORT MODAL -->
+    <div class="modal-overlay" id="uploadReportModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Upload New Report</h3>
+                <button class="modal-close" id="closeUploadModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="uploadReportForm">
+                <div class="form-group">
+                    <label>Report Name</label>
+                    <input type="text" id="uploadName" required placeholder="e.g. Complete Blood Count">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Report Type</label>
+                        <select id="uploadType" required>
+                            <option value="Blood Test">Blood Test</option>
+                            <option value="Imaging">Imaging</option>
+                            <option value="ECG">ECG</option>
+                            <option value="Urine Test">Urine Test</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="uploadDate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Prescribing Doctor</label>
+                    <input type="text" id="uploadDoctor" required placeholder="e.g. Dr. Sarah Wilson">
+                </div>
+                <div class="form-group">
+                    <label>Report File (PDF/Image)</label>
+                    <input type="file" id="uploadFile" required accept=".pdf,image/*">
+                </div>
+                <div class="form-group">
+                    <label>Additional Notes (Optional)</label>
+                    <textarea id="uploadNotes" rows="2" placeholder="Any details to add..."></textarea>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+                    <button type="button" class="btn-secondary" id="btnCancelUpload">Cancel</button>
+                    <button type="submit" class="btn-primary">Upload Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/patient/patient-reports.js"></script>
+</body>
+</html>

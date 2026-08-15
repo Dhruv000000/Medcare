@@ -1,0 +1,53 @@
+{
+  "interpretation": "Descriptive subgroup results only; small sample sizes and historical source bias prevent fairness or generalization conclusions.",
+  "model_version": "uci-heart-disease-logreg-v1.0.0",
+  "protocol": "Same fixed stratified 80/20 split and seed 42 as primary evaluation; subgrouping uses source-coded sex only.",
+  "subgroups": [
+    {
+      "accuracy": 0.95,
+      "balanced_accuracy": 0.9285714285714286,
+      "confusion_matrix": [
+        [
+          13,
+          0
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "f1": 0.9230769230769231,
+      "n": 20,
+      "positive_label_count": 7,
+      "precision": 1.0,
+      "recall_sensitivity": 0.8571428571428571,
+      "roc_auc": 1.0,
+      "source_feature": "sex",
+      "source_value": 0,
+      "specificity": 1.0
+    },
+    {
+      "accuracy": 0.8536585365853658,
+      "balanced_accuracy": 0.8511904761904762,
+      "confusion_matrix": [
+        [
+          15,
+          5
+        ],
+        [
+          1,
+          20
+        ]
+      ],
+      "f1": 0.8695652173913043,
+      "n": 41,
+      "positive_label_count": 21,
+      "precision": 0.8,
+      "recall_sensitivity": 0.9523809523809523,
+      "roc_auc": 0.9547619047619047,
+      "source_feature": "sex",
+      "source_value": 1,
+      "specificity": 0.75
+    }
+  ]
+}

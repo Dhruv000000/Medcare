@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Admin Dashboard</title>
+    <link rel="stylesheet" href="../../css/admin/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body data-admin-page="dashboard">
+    <aside class="sidebar">
+        <div class="logo"><i class="fa-solid fa-heart-pulse"></i><h2>MediCare</h2></div>
+        <nav aria-label="Admin navigation">
+            <a class="active" href="admin-dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+            <a href="admin-patients.html"><i class="fa-solid fa-users"></i><span>Patients</span></a>
+            <a href="admin-doctors.html"><i class="fa-solid fa-user-doctor"></i><span>Doctors</span></a>
+            <a href="admin-appointments.html"><i class="fa-solid fa-calendar-check"></i><span>Appointments</span></a>
+            <a href="admin-profile.html"><i class="fa-solid fa-user-gear"></i><span>Profile</span></a>
+            <a class="logout" href="../auth/login.html"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+        </nav>
+    </aside>
+    <main class="main">
+        <header class="topbar">
+            <div class="search"><i class="fa-solid fa-shield-halved"></i><span>Administrator oversight</span></div>
+            <div class="profile"><div class="avatar" id="adminAvatar">A</div><div><strong id="adminName">Loading...</strong><small>Administrator</small></div></div>
+        </header>
+        <section class="welcome">
+            <div><h1>Admin Dashboard</h1><p>System-level oversight based on current MediCare data.</p></div>
+            <a class="secondary-btn" href="admin-profile.html"><i class="fa-solid fa-user"></i> View Profile</a>
+        </section>
+        <div id="adminMessage" class="toast" role="status" aria-live="polite"></div>
+        <section class="cards" aria-label="System statistics">
+            <div class="card"><div class="card-icon blue"><i class="fa-solid fa-users"></i></div><div><h3>Total Patients</h3><strong id="totalPatients">—</strong></div></div>
+            <div class="card"><div class="card-icon purple"><i class="fa-solid fa-user-doctor"></i></div><div><h3>Total Doctors</h3><strong id="totalDoctors">—</strong></div></div>
+            <div class="card"><div class="card-icon orange"><i class="fa-solid fa-calendar-check"></i></div><div><h3>Total Appointments</h3><strong id="totalAppointments">—</strong></div></div>
+            <div class="card"><div class="card-icon green"><i class="fa-solid fa-user-check"></i></div><div><h3>Active Users</h3><strong id="activeUsers">—</strong></div></div>
+        </section>
+        <section class="panel">
+            <div class="panel-header"><h2>Appointment Overview</h2><span id="appointmentSummary">Loading...</span></div>
+            <div class="cards">
+                <div class="card"><div><h3>Pending</h3><strong id="pendingAppointments">—</strong></div></div>
+                <div class="card"><div><h3>Completed</h3><strong id="completedAppointments">—</strong></div></div>
+                <div class="card"><div><h3>Cancelled</h3><strong id="cancelledAppointments">—</strong></div></div>
+                <div class="card"><div><h3>Inactive Users</h3><strong id="inactiveUsers">—</strong></div></div>
+            </div>
+        </section>
+        <section class="panel">
+            <div class="panel-header"><h2>Recent Appointments</h2><a class="secondary-btn" href="admin-appointments.html">View all</a></div>
+            <div id="recentAppointments" class="table-wrap"><div class="loading-state">Loading appointments...</div></div>
+        </section>
+    </main>
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/admin/admin.js"></script>
+</body>
+</html>

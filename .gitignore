@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django development artifacts
+backend/db.sqlite3
+backend/db.sqlite3-journal
+backend/staticfiles/
+
+# Local virtual environments
+backend/venv/
+.venv/
+venv/
+
+# Environment files and secrets
+.env
+.env.*
+backend/.env
+backend/.env.*
+!.env.example
+!backend/.env.example
+
+# Coverage and test output
+.coverage
+htmlcov/
+.pytest_cache/
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated logs and temporary files
+*.log
+*.tmp

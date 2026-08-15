@@ -1,0 +1,29 @@
+{
+  "ai_route_count": 1,
+  "all_checks_passed": true,
+  "artifact_sha256": "e548527e51c67a7b611501acc844b367cecdde53413e33914ed9757fb9bae6cd",
+  "checks": {
+    "admin_aggregate_only": true,
+    "doctor_own_report_scope": true,
+    "event_minimization": true,
+    "frontend_no_storage_or_console": true,
+    "frontend_report_route": true,
+    "frontend_safe_dom": true,
+    "immutable_event_fields": true,
+    "model_checksum_preserved": true,
+    "no_csrf_exempt": true,
+    "no_patient_or_raw_feature_fields": true,
+    "no_patient_report_route": true,
+    "no_phase24_storage_change": true,
+    "no_raw_sql": true,
+    "patient_ai_denial_preserved": true,
+    "phase25_app_registered": true,
+    "phase25_routes_registered": true,
+    "read_only_report_routes": true,
+    "safe_report_serialization": true,
+    "safety_language": true,
+    "server_owned_recording": true,
+    "single_prediction_route": true
+  },
+  "phase": 25
+}

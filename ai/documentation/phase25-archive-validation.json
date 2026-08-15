@@ -1,0 +1,23 @@
+{
+  "all_checks_passed": true,
+  "archive": "/home/ubuntu/audit_project/medicare_phase25_completed.zip",
+  "artifact_sha256": "e548527e51c67a7b611501acc844b367cecdde53413e33914ed9757fb9bae6cd",
+  "checks": {
+    "artifact_checksum": true,
+    "excluded_runtime_entries": true,
+    "migrations_present": true,
+    "no_obvious_runtime_secrets": true,
+    "no_phase25_runtime_database": true,
+    "no_real_patient_data_files": true,
+    "path_preserving_root": true,
+    "phase23_xai_present": true,
+    "phase24_present": true,
+    "phase25_present": true,
+    "required_backend_frontend_ai_docs": true,
+    "required_files": true,
+    "single_prediction_route": true,
+    "tests_present": true,
+    "zip_integrity": true
+  },
+  "member_count": 439
+}

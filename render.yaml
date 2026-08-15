@@ -1,0 +1,47 @@
+databases:
+  - name: medicare-db
+    plan: free
+    databaseName: medicare_db
+    user: medicare_app
+
+services:
+  - type: web
+    name: medicare-backend
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: DJANGO_ENV
+        value: production
+      - key: DEBUG
+        value: "False"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: medicare-backend.onrender.com
+      - key: FRONTEND_ALLOWED_ORIGINS
+        value: https://medicare-backend.onrender.com
+      - key: ADMIN_REGISTRATION_CODE
+        sync: false
+      - key: DB_NAME
+        fromDatabase:
+          name: medicare-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: medicare-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: medicare-db
+          property: password
+      - key: DB_HOST
+        fromDatabase:
+          name: medicare-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: medicare-db
+          property: port

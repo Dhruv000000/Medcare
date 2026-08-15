@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Admin Profile</title>
+    <link rel="stylesheet" href="../../css/admin/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body data-admin-page="profile">
+    <aside class="sidebar">
+        <div class="logo"><i class="fa-solid fa-heart-pulse"></i><h2>MediCare</h2></div>
+        <nav aria-label="Admin navigation">
+            <a href="admin-dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+            <a href="admin-patients.html"><i class="fa-solid fa-users"></i><span>Patients</span></a>
+            <a href="admin-doctors.html"><i class="fa-solid fa-user-doctor"></i><span>Doctors</span></a>
+            <a href="admin-appointments.html"><i class="fa-solid fa-calendar-check"></i><span>Appointments</span></a>
+            <a class="active" href="admin-profile.html"><i class="fa-solid fa-user-gear"></i><span>Profile</span></a>
+            <a class="logout" href="../auth/login.html"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+        </nav>
+    </aside>
+    <main class="main">
+        <header class="topbar"><div class="search"><i class="fa-solid fa-user-shield"></i><span>Administrator profile</span></div><div class="profile"><div class="avatar" id="adminAvatar">A</div><div><strong id="adminName">Loading...</strong><small>Administrator</small></div></div></header>
+        <section class="welcome"><div><h1>Profile</h1><p>Authenticated administrator account information.</p></div></section>
+        <div id="adminMessage" class="toast" role="status" aria-live="polite"></div>
+        <section class="panel"><div class="panel-header"><h2>Account information</h2><span>Read-only</span></div><div id="adminProfile" class="loading-state">Loading profile...</div></section>
+        <section class="panel"><div class="panel-header"><h2>Security boundary</h2></div><p class="empty-state">Role, permissions, password, and security fields cannot be changed from this page. Use the existing secure authentication workflow for account access.</p></section>
+    </main>
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/admin/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediCare Doctor Dashboard</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/doctor/doctor-dashboard.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        <i class="fa-solid fa-heart-pulse"></i>
+
+        <h2>MediCare</h2>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <ul>
+
+
+        <li class="active">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Dashboard</span>
+
+        </li>
+
+
+        <li>
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>My Patients</span>
+
+        </li>
+
+
+        <li>
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            <span>Appointments</span>
+
+        </li>
+
+
+        <li>
+
+            <i class="fa-solid fa-file-medical"></i>
+
+            <span>Medical Reports</span>
+
+        </li>
+
+
+        <li>
+
+            <i class="fa-solid fa-prescription-bottle-medical"></i>
+
+            <span>Prescriptions</span>
+
+        </li>
+
+
+        <li>
+
+            <i class="fa-solid fa-stethoscope"></i>
+
+            <span>Clinical Tools</span>
+
+        </li>
+
+
+        <li>
+
+            <i class="fa-solid fa-robot"></i>
+
+            <span>AI Assistant</span>
+
+        </li>
+
+
+        <li>
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </li>
+
+
+        <li class="logout">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </li>
+
+
+    </ul>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+    <!-- =================================================
+         TOPBAR
+    ================================================== -->
+
+    <div class="topbar">
+
+
+        <!-- SEARCH -->
+
+        <div class="search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="patientSearch"
+                placeholder="Search patients...">
+
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <div class="profile">
+
+
+            <div class="notification">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>3</span>
+
+            </div>
+
+
+            <div class="doctor-profile">
+
+                <img
+                    src="https://i.pravatar.cc/100?img=12"
+                    alt="Doctor">
+
+                <div>
+
+                    <strong id="doctorName">
+                        Loading...
+                    </strong>
+
+                    <small id="doctorSpecialization">
+                        Loading...
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         WELCOME
+    ================================================== -->
+
+    <section class="welcome">
+
+
+        <div>
+
+            <h1>
+                                        Good Morning, <span id="doctorWelcomeName">Doctor</span> 👋
+
+            </h1>
+
+            <p>
+                Here's what's happening with your patients today.
+            </p>
+
+        </div>
+
+
+        <button class="primary-btn" id="addPatientBtn">
+
+            <i class="fa-solid fa-user-plus"></i>
+
+            Add Patient
+
+        </button>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         STAT CARDS
+    ================================================== -->
+
+    <section class="cards">
+
+
+        <!-- TOTAL PATIENTS -->
+
+        <div class="card">
+
+            <div class="card-icon blue">
+
+                <i class="fa-solid fa-users"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Total Patients
+                </h3>
+
+                <span id="doctorTotalPatientsCount">
+                    —
+                </span>
+
+                <small class="positive">
+                    Deferred to a later phase
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TODAY APPOINTMENTS -->
+
+        <div class="card">
+
+            <div class="card-icon purple">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Today's Appointments
+                </h3>
+
+                <span id="doctorTodayAppointmentsCount">
+                    —
+                </span>
+
+                <small id="doctorTodayRemainingCount">
+                    Loading...
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PENDING REPORTS -->
+
+        <div class="card">
+
+            <div class="card-icon orange">
+
+                <i class="fa-solid fa-file-medical"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Pending Reports
+                </h3>
+
+                <span id="doctorPendingReportsCount">
+                    —
+                </span>
+
+                <small class="warning">
+                    Deferred to Phase 9
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CRITICAL PATIENTS -->
+
+        <div class="card">
+
+            <div class="card-icon red">
+
+                <i class="fa-solid fa-heart-pulse"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Critical Alerts
+                </h3>
+
+                <span id="doctorCriticalAlertsCount">
+                    —
+                </span>
+
+                <small class="danger">
+                    Deferred to Phase 9
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         CONTENT AREA
+    ================================================== -->
+
+    <section class="content">
+
+
+        <!-- =================================================
+             PATIENTS
+        ================================================== -->
+
+        <div class="patients-panel">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Recent Patients
+                    </h2>
+
+                    <p>
+                        Recently updated patient records
+                    </p>
+
+                </div>
+
+
+                <button id="viewPatients">
+                    View All
+                </button>
+
+            </div>
+
+
+
+            <!-- PATIENT TABLE -->
+
+            <div class="table-container">
+
+                <table id="patientTable">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Patient
+                            </th>
+
+                            <th>
+                                Age
+                            </th>
+
+                            <th>
+                                Condition
+                            </th>
+
+                            <th>
+                                Last Visit
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <td>
+
+                                <div class="patient">
+
+                                    <div class="patient-avatar">
+                                        AS
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Loading authorized patient
+                                        </strong>
+
+                                        <small>
+                                            ID: —
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                42
+                            </td>
+
+
+                            <td>
+                                Loading…
+                            </td>
+
+
+                            <td>
+                                —
+                            </td>
+
+
+                            <td>
+
+                                <span class="status stable">
+                                    Stable
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <button
+                                    class="view-btn"
+                                    data-patient="Loading authorized patient">
+
+                                    View
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td>
+
+                                <div class="patient">
+
+                                    <div class="patient-avatar">
+                                        RP
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Loading authorized patient
+                                        </strong>
+
+                                        <small>
+                                            ID: —
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                35
+                            </td>
+
+
+                            <td>
+                                Loading…
+                            </td>
+
+
+                            <td>
+                                —
+                            </td>
+
+
+                            <td>
+
+                                <span class="status review">
+                                    Review
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <button
+                                    class="view-btn"
+                                    data-patient="Loading authorized patient">
+
+                                    View
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td>
+
+                                <div class="patient">
+
+                                    <div class="patient-avatar">
+                                        VK
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Loading authorized patient
+                                        </strong>
+
+                                        <small>
+                                            ID: —
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                57
+                            </td>
+
+
+                            <td>
+                                Loading…
+                            </td>
+
+
+                            <td>
+                                —
+                            </td>
+
+
+                            <td>
+
+                                <span class="status critical">
+                                    Critical
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <button
+                                    class="view-btn"
+                                    data-patient="Loading authorized patient">
+
+                                    View
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td>
+
+                                <div class="patient">
+
+                                    <div class="patient-avatar">
+                                        NK
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Loading authorized patient
+                                        </strong>
+
+                                        <small>
+                                            ID: —
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                29
+                            </td>
+
+
+                            <td>
+                                Loading…
+                            </td>
+
+
+                            <td>
+                                —
+                            </td>
+
+
+                            <td>
+
+                                <span class="status stable">
+                                    Stable
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <button
+                                    class="view-btn"
+                                    data-patient="Loading authorized patient">
+
+                                    View
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             RIGHT PANEL
+        ================================================== -->
+
+        <div class="right-panel">
+
+
+            <!-- =================================================
+                 NEXT APPOINTMENTS
+            ================================================== -->
+
+            <div class="appointment-panel">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Today's Schedule
+                        </h2>
+
+                        <p>
+                            Upcoming appointments
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="appointment">
+
+
+                    <div class="time">
+
+                        <strong>
+                            09:30
+                        </strong>
+
+                        <small>
+                            AM
+                        </small>
+
+                    </div>
+
+
+                    <div class="appointment-info">
+
+                        <strong>
+                            Loading authorized patient
+                        </strong>
+
+                        <span>
+                            Follow-up Consultation
+                        </span>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </div>
+
+
+
+                <div class="appointment">
+
+
+                    <div class="time">
+
+                        <strong>
+                            10:30
+                        </strong>
+
+                        <small>
+                            AM
+                        </small>
+
+                    </div>
+
+
+                    <div class="appointment-info">
+
+                        <strong>
+                            Loading authorized patient
+                        </strong>
+
+                        <span>
+                            Loading… Checkup
+                        </span>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </div>
+
+
+
+                <div class="appointment">
+
+
+                    <div class="time">
+
+                        <strong>
+                            12:00
+                        </strong>
+
+                        <small>
+                            PM
+                        </small>
+
+                    </div>
+
+
+                    <div class="appointment-info">
+
+                        <strong>
+                            Loading authorized patient
+                        </strong>
+
+                        <span>
+                            Cardiac Consultation
+                        </span>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 AI INSIGHT
+            ================================================== -->
+
+            <div class="ai-panel">
+
+
+                <div class="ai-icon">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                </div>
+
+
+                <h2>
+                    Academic AI Risk Classification
+                </h2>
+
+
+                <p>
+                    Authorized doctors may submit the approved public-dataset feature schema for an academic development-only classification. This is not clinically validated and is not a diagnosis or medical advice.
+                </p>
+
+
+                <button id="aiButton" type="button" aria-expanded="false" aria-controls="doctorAiForm">
+                    Open Academic AI Tool
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+
+                <form id="doctorAiForm" class="ai-form" aria-describedby="aiFormNote" novalidate hidden>
+                    <p id="aiFormNote" class="ai-form-note">Enter the exact source-coded feature values. The backend remains authoritative for validation. Model probability is an academic model output, not diagnostic confidence. The doctor remains responsible for clinical interpretation and decisions. Do not enter patient identifiers or unrelated clinical records.</p>
+                    <div class="ai-form-grid">
+                        <div class="ai-field">
+                            <label for="aiAge">age</label>
+                            <input id="aiAge" name="age" type="number" min="29" max="77" step="1" required>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiSex">sex (source code)</label>
+                            <select id="aiSex" name="sex" required>
+                                <option value="">Select</option><option value="0">0</option><option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiCp">cp (source code)</label>
+                            <select id="aiCp" name="cp" required>
+                                <option value="">Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiTrestbps">trestbps</label>
+                            <input id="aiTrestbps" name="trestbps" type="number" min="94" max="200" step="any" required>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiChol">chol</label>
+                            <input id="aiChol" name="chol" type="number" min="126" max="564" step="any" required>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiFbs">fbs (source code)</label>
+                            <select id="aiFbs" name="fbs" required>
+                                <option value="">Select</option><option value="0">0</option><option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiRestecg">restecg (source code)</label>
+                            <select id="aiRestecg" name="restecg" required>
+                                <option value="">Select</option><option value="0">0</option><option value="1">1</option><option value="2">2</option>
+                            </select>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiThalach">thalach</label>
+                            <input id="aiThalach" name="thalach" type="number" min="71" max="202" step="any" required>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiExang">exang (source code)</label>
+                            <select id="aiExang" name="exang" required>
+                                <option value="">Select</option><option value="0">0</option><option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiOldpeak">oldpeak</label>
+                            <input id="aiOldpeak" name="oldpeak" type="number" min="0" max="6.2" step="0.1" required>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiSlope">slope (source code)</label>
+                            <select id="aiSlope" name="slope" required>
+                                <option value="">Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                            </select>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiCa">ca (source code)</label>
+                            <select id="aiCa" name="ca" required>
+                                <option value="">Select</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                            </select>
+                        </div>
+                        <div class="ai-field">
+                            <label for="aiThal">thal (source code)</label>
+                            <select id="aiThal" name="thal" required>
+                                <option value="">Select</option><option value="3">3</option><option value="6">6</option><option value="7">7</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="ai-form-actions">
+                        <button id="aiSubmitBtn" class="ai-submit-btn" type="submit">Run Academic Classification</button>
+                        <button id="aiResetBtn" class="ai-reset-btn" type="button">Clear</button>
+                    </div>
+                    <p id="aiValidationMessage" class="ai-message" role="alert" aria-live="polite"></p>
+                    <div id="aiPredictionResult" class="ai-result" role="status" aria-live="polite" hidden></div>
+                    <section id="aiExplanation" class="ai-explanation" aria-labelledby="aiExplanationTitle" hidden>
+                        <h3 id="aiExplanationTitle">Model feature contributions</h3>
+                        <p id="aiExplanationNote" class="ai-explanation-note">These signed values describe how the model used the submitted feature values. They do not describe biological causes or clinical importance.</p>
+                        <div id="aiExplanationList" class="ai-explanation-list" role="list" aria-label="Model feature contribution list"></div>
+                    </section>
+                    <section id="aiReportsPanel" class="ai-reports-panel" aria-labelledby="aiReportsTitle">
+                        <div class="ai-reports-header">
+                            <div>
+                                <h3 id="aiReportsTitle">Authorized Academic Reports</h3>
+                                <p>Reports are limited to predictions requested by this doctor. Patient prediction history is not available.</p>
+                            </div>
+                            <button id="viewAiReportsButton" class="ai-reports-button" type="button" aria-expanded="false" aria-controls="aiReportsList">View Reports</button>
+                        </div>
+                        <p id="aiReportsStatus" class="ai-reports-status" role="status" aria-live="polite" hidden></p>
+                        <div id="aiReportsList" class="ai-reports-list" role="list" hidden></div>
+                    </section>
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+<div class="modal-overlay" id="doctorClinicalRecordsModal" aria-hidden="true">
+    <div class="modal doctor-clinical-record-modal" role="dialog" aria-modal="true" aria-labelledby="doctorClinicalRecordsTitle">
+        <div class="modal-header">
+            <div>
+                <h3 id="doctorClinicalRecordsTitle">Authorized Clinical Records</h3>
+                <p id="doctorClinicalRecordsPatient" class="modal-subtitle">Appointment-scoped patient records</p>
+            </div>
+            <button class="modal-close" id="closeDoctorClinicalRecordsModal" type="button" aria-label="Close clinical records">&times;</button>
+        </div>
+        <div class="modal-body" id="doctorClinicalRecordsContent" aria-live="polite">
+            <p class="clinical-records-status">Select an authorized patient to view records.</p>
+        </div>
+        <section id="phase26ClinicalWorkflow" class="phase26-clinical-workflow" hidden aria-labelledby="phase26ClinicalWorkflowTitle">
+            <div class="phase26-workflow-header">
+                <div>
+                    <h4 id="phase26ClinicalWorkflowTitle">Clinical workflow actions</h4>
+                    <p>For the selected appointment-authorized patient. The server re-checks patient, doctor, appointment, and record authorization.</p>
+                </div>
+            </div>
+            <p id="phase26WorkflowStatus" class="clinical-records-status" role="status" aria-live="polite" hidden></p>
+            <form id="phase26ClinicalForm" novalidate>
+                <div class="phase26-form-grid">
+                    <div class="ai-field">
+                        <label for="phase26WorkflowType">Workflow</label>
+                        <select id="phase26WorkflowType" name="workflow_type">
+                            <option value="record">Add medical record</option>
+                            <option value="report">Add medical report</option>
+                            <option value="prescription">Add prescription</option>
+                        </select>
+                    </div>
+                    <div class="ai-field">
+                        <label for="phase26AppointmentId">Appointment</label>
+                        <select id="phase26AppointmentId" name="appointment_id">
+                            <option value="">No appointment link</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="phase26RecordFields" class="phase26-workflow-fields">
+                    <div class="phase26-form-grid">
+                        <div class="ai-field"><label for="phase26RecordType">Record type</label><select id="phase26RecordType" name="record_type"><option value="lab_test">Lab Test</option><option value="consultation">Consultation</option><option value="imaging">Imaging</option><option value="prescription">Prescription</option><option value="other">Other</option></select></div>
+                        <div class="ai-field"><label for="phase26RecordDate">Occurred on</label><input id="phase26RecordDate" name="occurred_on" type="date" required></div>
+                    </div>
+                    <div class="ai-field"><label for="phase26Diagnosis">Diagnosis or record title</label><input id="phase26Diagnosis" name="diagnosis" maxlength="255" required></div>
+                    <div class="ai-field"><label for="phase26RecordNotes">Notes</label><textarea id="phase26RecordNotes" name="notes" rows="3"></textarea></div>
+                </div>
+                <div id="phase26ReportFields" class="phase26-workflow-fields" hidden>
+                    <div class="phase26-form-grid">
+                        <div class="ai-field"><label for="phase26ReportTitle">Report title</label><input id="phase26ReportTitle" name="title" maxlength="255"></div>
+                        <div class="ai-field"><label for="phase26ReportType">Report type</label><select id="phase26ReportType" name="report_type"><option value="blood_test">Blood Test</option><option value="imaging">Imaging</option><option value="ecg">ECG</option><option value="urine_test">Urine Test</option><option value="other">Other</option></select></div>
+                        <div class="ai-field"><label for="phase26ReportDate">Report date</label><input id="phase26ReportDate" name="report_date" type="date"></div>
+                        <div class="ai-field"><label for="phase26ReportStatus">Status</label><select id="phase26ReportStatus" name="status"><option value="pending">Pending</option><option value="normal">Normal</option><option value="abnormal">Abnormal</option></select></div>
+                    </div>
+                    <div class="ai-field"><label for="phase26Laboratory">Laboratory name</label><input id="phase26Laboratory" name="laboratory_name" maxlength="255"></div>
+                    <div class="ai-field"><label for="phase26ReportSummary">Summary</label><textarea id="phase26ReportSummary" name="summary" rows="2"></textarea></div>
+                    <div class="ai-field"><label for="phase26Interpretation">Interpretation</label><textarea id="phase26Interpretation" name="interpretation" rows="2"></textarea></div>
+                    <div class="phase26-form-grid">
+                        <div class="ai-field"><label for="phase26FindingLabel">Finding label (optional)</label><input id="phase26FindingLabel" name="finding_label" maxlength="255"></div>
+                        <div class="ai-field"><label for="phase26FindingValue">Finding value (optional)</label><input id="phase26FindingValue" name="finding_value" maxlength="255"></div>
+                    </div>
+                    <label class="phase26-checkbox"><input id="phase26FindingNormal" type="checkbox" checked> Finding is normal</label>
+                    <div class="ai-field"><label for="phase26MedicalRecordId">Link existing medical record (optional)</label><select id="phase26MedicalRecordId" name="medical_record_id"><option value="">No record link</option></select></div>
+                </div>
+                <div id="phase26PrescriptionFields" class="phase26-workflow-fields" hidden>
+                    <div class="phase26-form-grid">
+                        <div class="ai-field"><label for="phase26PrescriptionStatus">Status</label><select id="phase26PrescriptionStatus" name="status"><option value="active">Active</option><option value="refill_needed">Refill Needed</option><option value="completed">Completed</option></select></div>
+                        <div class="ai-field"><label for="phase26IssuedOn">Issued on</label><input id="phase26IssuedOn" name="issued_on" type="date"></div>
+                        <div class="ai-field"><label for="phase26StartDate">Start date</label><input id="phase26StartDate" name="start_date" type="date"></div>
+                        <div class="ai-field"><label for="phase26EndDate">End date (optional)</label><input id="phase26EndDate" name="end_date" type="date"></div>
+                    </div>
+                    <div class="phase26-form-grid">
+                        <div class="ai-field"><label for="phase26Medicine">Medicine</label><input id="phase26Medicine" name="medicine" maxlength="255"></div>
+                        <div class="ai-field"><label for="phase26Dosage">Dosage</label><input id="phase26Dosage" name="dosage" maxlength="120"></div>
+                        <div class="ai-field"><label for="phase26Frequency">Frequency</label><input id="phase26Frequency" name="frequency" maxlength="120"></div>
+                        <div class="ai-field"><label for="phase26Duration">Duration (optional)</label><input id="phase26Duration" name="duration" maxlength="120"></div>
+                    </div>
+                    <div class="ai-field"><label for="phase26Instructions">Instructions</label><textarea id="phase26Instructions" name="instructions" rows="2"></textarea></div>
+                    <div class="ai-field"><label for="phase26SideEffects">Side effects (optional)</label><textarea id="phase26SideEffects" name="side_effects" rows="2"></textarea></div>
+                </div>
+                <div class="phase26-workflow-actions">
+                    <button id="phase26Submit" class="primary-btn" type="submit">Save clinical entry</button>
+                    <button id="phase26Reset" class="view-btn" type="reset">Clear</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+    <script src="../../js/auth/auth-client.js"></script>
+<script src="../../js/doctor/doctor-dashboard.js"></script>
+
+
+</body>
+
+</html>

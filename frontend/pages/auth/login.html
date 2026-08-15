@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MediCare - Login</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/auth/login.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+
+
+<body>
+
+    <!-- =================================================
+         MAIN CONTAINER
+    ================================================== -->
+
+    <div class="container">
+
+
+        <!-- =================================================
+             LEFT SIDE
+        ================================================== -->
+
+        <div class="left">
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <i class="fa-solid fa-heart-pulse"></i>
+
+                <h1>MediCare</h1>
+
+            </div>
+
+
+            <!-- MAIN HEADING -->
+
+            <h2>
+                Intelligent Clinical Decision
+                Support System
+            </h2>
+
+
+            <!-- DESCRIPTION -->
+
+            <p>
+                AI-powered healthcare assistance for
+                Patients, Doctors and Administrators.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RIGHT SIDE
+        ================================================== -->
+
+        <div class="right">
+
+            <!-- LOGIN CARD -->
+
+            <div class="login-card">
+
+
+                <!-- HEADING -->
+
+                <h2>
+                    Welcome Back
+                </h2>
+
+                <p>
+                    Select your role
+                </p>
+
+
+
+                <!-- =================================================
+                     ROLE SELECTION
+                ================================================== -->
+
+                <div class="roles">
+
+
+                    <!-- PATIENT -->
+
+                    <div class="role active"
+                         data-role="Patient">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <span>
+                            Patient
+                        </span>
+
+                    </div>
+
+
+                    <!-- DOCTOR -->
+
+                    <div class="role"
+                         data-role="Doctor">
+
+                        <i class="fa-solid fa-user-doctor"></i>
+
+                        <span>
+                            Doctor
+                        </span>
+
+                    </div>
+
+
+                    <!-- ADMIN -->
+
+                    <div class="role"
+                         data-role="Admin">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                        <span>
+                            Admin
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     LOGIN FORM
+                ================================================== -->
+
+                <form id="loginForm" novalidate>
+
+
+                    <!-- USERNAME / EMAIL -->
+
+                    <div class="input-box">
+
+                        <label id="emailLabel">
+                            Email
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Enter Email"
+                            autocomplete="username">
+
+
+                        <small
+                            class="field-error"
+                            id="usernameError">
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="input-box">
+
+                        <label>
+                            Password
+                        </label>
+
+
+                        <div class="password">
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter Password"
+                                autocomplete="current-password">
+
+
+                            <!-- SHOW / HIDE PASSWORD -->
+
+                            <i
+                                class="fa-solid fa-eye"
+                                id="togglePassword">
+                            </i>
+
+                        </div>
+
+
+                        <small
+                            class="field-error"
+                            id="passwordError">
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         OPTIONS
+                    ================================================== -->
+
+                    <div class="options">
+
+
+                        <!-- REMEMBER ME -->
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe">
+
+                            Remember Me
+
+                        </label>
+
+
+                        <!-- FORGOT PASSWORD -->
+
+                        <a href="#">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         LOGIN BUTTON
+                    ================================================== -->
+
+                    <button
+                        type="submit"
+                        id="loginButton">
+
+                        Login as
+
+                        <span id="roleText">
+                            Patient
+                        </span>
+
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- =================================================
+                     REGISTER
+                ================================================== -->
+
+                <div class="bottom-text">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+                        Register
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/auth/login.js"></script>
+
+</body>
+
+</html>

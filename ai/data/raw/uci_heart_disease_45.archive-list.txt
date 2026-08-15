@@ -1,0 +1,28 @@
+Archive:  ai/data/raw/uci_heart_disease_45.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+      644  2023-05-22 22:24   Index
+      407  2023-05-22 22:24   WARNING
+      587  2023-05-22 22:24   ask-detrano
+     6737  2023-05-22 22:24   bak
+    23941  2023-05-22 22:24   cleve.mod
+    60669  2023-05-22 22:24   cleveland.data
+        0  2023-05-22 22:24   costs/
+      250  2023-05-22 22:24   costs/Index
+     2558  2023-05-22 22:24   costs/heart-disease.README
+      185  2023-05-22 22:24   costs/heart-disease.cost
+      234  2023-05-22 22:24   costs/heart-disease.delay
+      279  2023-05-22 22:24   costs/heart-disease.expense
+       94  2023-05-22 22:24   costs/heart-disease.group
+    10060  2023-05-22 22:24   heart-disease.names
+    62192  2023-05-22 22:24   hungarian.data
+    39892  2023-05-22 22:24   long-beach-va.data
+   389771  2023-05-22 22:24   new.data
+    18461  2023-05-22 22:24   processed.cleveland.data
+    10263  2023-05-22 22:24   processed.hungarian.data
+     4109  2023-05-22 22:24   processed.switzerland.data
+     6737  2023-05-22 22:24   processed.va.data
+    11058  2023-05-22 22:24   reprocessed.hungarian.data
+    24674  2023-05-22 22:24   switzerland.data
+---------                     -------
+   673802                     23 files

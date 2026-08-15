@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediCare | Patient Dashboard</title>
+
+    <!-- Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/patient/patient-dashboard.css">
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar">
+
+        <!-- LOGO -->
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+
+            <div class="logo-text">
+                <h2>MediCare</h2>
+                <span>Clinical Intelligence</span>
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MENU</p>
+
+
+            <!-- Dashboard -->
+            <a
+                href="patient-dashboard.html"
+                class="nav-item active"
+            >
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+
+            <!-- Appointments -->
+            <a
+                href="patient-appointments.html"
+                class="nav-item"
+            >
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Appointments</span>
+            </a>
+
+
+            <!-- Medical Records -->
+            <a
+                href="patient-medical-records.html"
+                class="nav-item"
+            >
+                <i class="fa-solid fa-file-medical"></i>
+                <span>Medical Records</span>
+            </a>
+
+
+            <!-- Prescriptions -->
+            <a
+                href="patient-prescriptions.html"
+                class="nav-item"
+            >
+                <i class="fa-solid fa-pills"></i>
+                <span>Prescriptions</span>
+            </a>
+
+
+            <!-- Reports -->
+            <a
+                href="patient-reports.html"
+                class="nav-item"
+            >
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports</span>
+            </a>
+
+
+            <!-- AI Health Insights -->
+            <a
+                href="patient-ai-insights.html"
+                class="nav-item"
+            >
+                <i class="fa-solid fa-brain"></i>
+                <span>AI Health Insights</span>
+            </a>
+
+
+            <!-- ACCOUNT -->
+            <p class="nav-title settings-title">
+                ACCOUNT
+            </p>
+
+
+            <!-- Settings -->
+            <a
+                href="patient-settings.html"
+                class="nav-item"
+            >
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+        <div class="sidebar-bottom">
+
+            <!-- Logout -->
+            <a
+                href="../auth/login.html"
+                class="nav-item logout"
+            >
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+
+            <!-- User -->
+            <div class="user-mini">
+
+                <div class="avatar" id="sidebarAvatar">
+                    SJ
+                </div>
+
+                <div class="user-info">
+
+                    <strong id="sidebarName">
+                        Patient
+                    </strong>
+
+                    <span>
+                        Patient
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-ellipsis"></i>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+             ================================================= -->
+
+        <header class="topbar">
+
+            <!-- Mobile Logo -->
+            <div class="mobile-logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+
+                <strong>MediCare</strong>
+
+            </div>
+
+
+            <!-- Search -->
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    placeholder="Search records, doctors..."
+                >
+
+            </div>
+
+
+            <!-- Topbar Actions -->
+            <div class="topbar-actions">
+
+
+                <!-- Theme Toggle -->
+                <button
+                    class="icon-button"
+                    id="themeToggle"
+                    title="Toggle theme"
+                >
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+
+                <!-- Notifications -->
+                <button
+                    class="icon-button notification"
+                    title="Notifications"
+                >
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <!-- Profile -->
+                <div class="profile">
+
+                    <div class="avatar" id="topbarAvatar">
+                        SJ
+                    </div>
+
+                    <div class="profile-text">
+
+                        <strong id="topbarName">
+                            Patient
+                        </strong>
+
+                        <span>
+                            Patient
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             DASHBOARD
+             ================================================= -->
+
+        <section class="dashboard">
+
+
+            <!-- PAGE HEADING -->
+            <div class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PATIENT PORTAL
+                    </span>
+
+                    <h1 id="patientWelcomeHeading">
+                        Good morning
+                    </h1>
+
+                    <p>
+                        Here's a quick overview of your health.
+                    </p>
+
+                </div>
+
+
+                <div class="last-updated">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Last updated today
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 OVERVIEW CARDS
+                 ================================================= -->
+
+            <div class="stats-grid">
+
+
+                <!-- Upcoming Appointment -->
+                <div class="stat-card">
+
+                    <div class="stat-content">
+
+                        <span>
+                            Upcoming Appointment
+                        </span>
+
+                        <h2 id="upcomingAppointmentCount">
+                            01
+                        </h2>
+
+                        <p>
+                            Next appointment
+                        </p>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Medical Records -->
+                <div class="stat-card">
+
+                    <div class="stat-content">
+
+                        <span>
+                            Medical Records
+                        </span>
+
+                        <h2 id="medicalRecordCount">
+                            08
+                        </h2>
+
+                        <p>
+                            Available records
+                        </p>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-file-medical"></i>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Prescriptions -->
+                <div class="stat-card">
+
+                    <div class="stat-content">
+
+                        <span>
+                            Prescriptions
+                        </span>
+
+                        <h2 id="activePrescriptionCount">
+                            03
+                        </h2>
+
+                        <p>
+                            Active medicines
+                        </p>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-pills"></i>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Health Status -->
+                <div class="stat-card">
+
+                    <div class="stat-content">
+
+                        <span>
+                            Health Status
+                        </span>
+
+                        <h2 id="patientHealthStatus" class="health-good">
+                            Not available
+                        </h2>
+
+                        <p>
+                            Current status
+                        </p>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-heart-pulse"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RECENT ACTIVITY + QUICK ACCESS
+                 ================================================= -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- =============================================
+                     RECENT ACTIVITY
+                     ============================================= -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Recent Activity
+                            </h3>
+
+                            <p>
+                                Your latest health activity
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-list" id="recentActivityList">
+
+
+                        <!-- Activity 1 -->
+                        <div class="activity-item">
+
+                            <div class="activity-icon">
+
+                                <i class="fa-solid fa-file-medical"></i>
+
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+                                    Lab report uploaded
+                                </strong>
+
+                                <span>
+                                    Complete Blood Count
+                                </span>
+
+                            </div>
+
+                            <small>
+                                2 days ago
+                            </small>
+
+                        </div>
+
+
+                        <!-- Activity 2 -->
+                        <div class="activity-item">
+
+                            <div class="activity-icon">
+
+                                <i class="fa-solid fa-calendar-check"></i>
+
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+                                    Appointment confirmed
+                                </strong>
+
+                                <span>
+                                    Dr. Sarah Wilson
+                                </span>
+
+                            </div>
+
+                            <small>
+                                3 days ago
+                            </small>
+
+                        </div>
+
+
+                        <!-- Activity 3 -->
+                        <div class="activity-item">
+
+                            <div class="activity-icon">
+
+                                <i class="fa-solid fa-pills"></i>
+
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+                                    Prescription updated
+                                </strong>
+
+                                <span>
+                                    Vitamin D3
+                                </span>
+
+                            </div>
+
+                            <small>
+                                5 days ago
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     QUICK ACCESS
+                     ============================================= -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Quick Access
+                            </h3>
+
+                            <p>
+                                Frequently used sections
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-links">
+
+
+                        <!-- Medical Records -->
+                        <a
+                            href="patient-medical-records.html"
+                            class="quick-link"
+                        >
+
+                            <div class="quick-icon">
+
+                                <i class="fa-solid fa-file-medical"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Medical Records
+                                </strong>
+
+                                <span>
+                                    View your health history
+                                </span>
+
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </a>
+
+
+                        <!-- Prescriptions -->
+                        <a
+                            href="patient-prescriptions.html"
+                            class="quick-link"
+                        >
+
+                            <div class="quick-icon">
+
+                                <i class="fa-solid fa-pills"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Prescriptions
+                                </strong>
+
+                                <span>
+                                    View your medicines
+                                </span>
+
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </a>
+
+
+                        <!-- AI Insights -->
+                        <a
+                            href="patient-ai-insights.html"
+                            class="quick-link"
+                        >
+
+                            <div class="quick-icon">
+
+                                <i class="fa-solid fa-brain"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    AI Health Insights
+                                </strong>
+
+                                <span>
+                                    View your AI analysis
+                                </span>
+
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/patient/patient-dashboard.js"></script>
+
+</body>
+
+</html>

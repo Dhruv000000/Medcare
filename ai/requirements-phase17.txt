@@ -1,0 +1,7 @@
+# Phase 17 local/offline training and evaluation dependencies
+# Python runtime: 3.12.3
+numpy==2.5.2
+pandas==3.0.5
+scikit-learn==1.9.0
+joblib==1.5.3
+matplotlib==3.11.1

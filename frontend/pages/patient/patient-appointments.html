@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare | Appointments</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6.5.2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../css/patient/patient-appointments.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="logo-text">
+                <h2>MediCare</h2>
+                <span>Clinical Intelligence</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <p class="nav-title">MENU</p>
+            <a href="patient-dashboard.html" class="nav-item">
+                <i class="fa-solid fa-house"></i><span>Dashboard</span>
+            </a>
+            <a href="patient-appointments.html" class="nav-item active">
+                <i class="fa-solid fa-calendar-days"></i><span>Appointments</span>
+            </a>
+            <a href="patient-medical-records.html" class="nav-item">
+                <i class="fa-solid fa-file-medical"></i><span>Medical Records</span>
+            </a>
+            <a href="patient-prescriptions.html" class="nav-item">
+                <i class="fa-solid fa-pills"></i><span>Prescriptions</span>
+            </a>
+            <a href="patient-reports.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i><span>Reports</span>
+            </a>
+            <a href="patient-ai-insights.html" class="nav-item">
+                <i class="fa-solid fa-brain"></i><span>AI Health Insights</span>
+            </a>
+            <p class="nav-title settings-title">ACCOUNT</p>
+            <a href="patient-settings.html" class="nav-item">
+                <i class="fa-solid fa-gear"></i><span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="../auth/login.html" class="nav-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+            </a>
+            <div class="user-mini">
+                <div class="avatar" id="sidebarAvatar">SJ</div>
+                <div class="user-info">
+                    <strong id="sidebarName">Sanskar Jadhav</strong>
+                    <span>Patient</span>
+                </div>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="mobile-logo">
+                <div class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                <strong>MediCare</strong>
+            </div>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="pageSearch" placeholder="Search...">
+            </div>
+            <div class="topbar-actions">
+                <button class="icon-button" id="themeToggle" title="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-button notification" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+                <div class="profile">
+                    <div class="avatar" id="topbarAvatar">SJ</div>
+                    <div class="profile-text">
+                        <strong id="topbarName">Sanskar Jadhav</strong>
+                        <span>Patient</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- PAGE CONTAINER -->
+        <div class="page-container">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">PATIENT PORTAL</span>
+                    <h1>My Appointments</h1>
+                    <p>Manage and schedule your appointments</p>
+                </div>
+                <button class="btn-primary" id="btnBookAppointment">
+                    <i class="fa-solid fa-plus"></i> Book Appointment
+                </button>
+            </div>
+
+            <!-- STATS ROW -->
+            <div class="stats-grid" id="statsGrid">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- FILTER BAR -->
+            <div class="filter-bar">
+                <div class="search-input">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="filterSearch" placeholder="Search appointments by doctor or reason...">
+                </div>
+                <select id="filterStatus">
+                    <option value="All">All Statuses</option>
+                    <option value="Upcoming">Upcoming</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
+
+            <!-- APPOINTMENTS LIST -->
+            <div class="appointments-list" id="appointmentsList">
+                <!-- Cards injected by JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- BOOK APPOINTMENT MODAL -->
+    <div class="modal-overlay" id="bookModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Book Appointment</h3>
+                <button class="modal-close" id="closeBookModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Select Doctor</label>
+                    <select id="bookDoctor">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="bookDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Available Time Slots</label>
+                    <div class="time-slots-grid" id="bookTimeSlots">
+                        <!-- Buttons populated by JS -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Reason for Visit</label>
+                    <textarea id="bookReason" rows="3" placeholder="Briefly describe your symptoms or reason for visit..."></textarea>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+                    <button class="btn-secondary" id="btnCancelBook">Cancel</button>
+                    <button class="btn-primary" id="btnConfirmBook">Confirm Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAILS MODAL -->
+    <div class="modal-overlay" id="detailsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Appointment Details</h3>
+                <button class="modal-close" id="closeDetailsModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="detailsModalContent">
+                <!-- Content injected by JS -->
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+                <button class="btn-secondary" id="btnDismissDetails">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="../../js/auth/auth-client.js"></script>
+    <script src="../../js/patient/patient-appointments.js"></script>
+</body>
+</html>

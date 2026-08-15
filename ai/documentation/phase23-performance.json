@@ -1,0 +1,10 @@
+{
+  "sample_count": 30,
+  "min_ms": 18.35550699615851,
+  "median_ms": 19.488021498546004,
+  "mean_ms": 19.667346467031166,
+  "max_ms": 22.295441012829542,
+  "model": "uci-heart-disease-logreg-v1.0.0",
+  "prediction": "label_absent",
+  "explanation_features": 13
+}
