@@ -42,10 +42,10 @@
 
     <!-- NAVIGATION -->
 
-    <ul>
+    <ul id="doctorSidebarNav">
 
 
-        <li class="active">
+        <li class="active" data-nav="dashboard" role="button" tabindex="0">
 
             <i class="fa-solid fa-house"></i>
 
@@ -54,7 +54,7 @@
         </li>
 
 
-        <li>
+        <li data-nav="patients" role="button" tabindex="0">
 
             <i class="fa-solid fa-users"></i>
 
@@ -63,7 +63,7 @@
         </li>
 
 
-        <li>
+        <li data-nav="appointments" role="button" tabindex="0">
 
             <i class="fa-solid fa-calendar-check"></i>
 
@@ -72,7 +72,7 @@
         </li>
 
 
-        <li>
+        <li data-nav="reports" role="button" tabindex="0">
 
             <i class="fa-solid fa-file-medical"></i>
 
@@ -81,7 +81,7 @@
         </li>
 
 
-        <li>
+        <li data-nav="prescriptions" role="button" tabindex="0">
 
             <i class="fa-solid fa-prescription-bottle-medical"></i>
 
@@ -90,7 +90,7 @@
         </li>
 
 
-        <li>
+        <li data-nav="clinical-tools" role="button" tabindex="0">
 
             <i class="fa-solid fa-stethoscope"></i>
 
@@ -99,7 +99,7 @@
         </li>
 
 
-        <li>
+        <li data-nav="ai-assistant" role="button" tabindex="0">
 
             <i class="fa-solid fa-robot"></i>
 
@@ -108,7 +108,7 @@
         </li>
 
 
-        <li>
+        <li data-nav="settings" role="button" tabindex="0">
 
             <i class="fa-solid fa-gear"></i>
 
@@ -378,7 +378,7 @@
              PATIENTS
         ================================================== -->
 
-        <div class="patients-panel">
+        <div class="patients-panel" id="patientsPanel">
 
 
             <div class="section-header">
@@ -736,7 +736,7 @@
                  NEXT APPOINTMENTS
             ================================================== -->
 
-            <div class="appointment-panel">
+            <div class="appointment-panel" id="appointmentPanel">
 
 
                 <div class="section-header">
@@ -869,7 +869,7 @@
                  AI INSIGHT
             ================================================== -->
 
-            <div class="ai-panel">
+            <div class="ai-panel" id="aiPanel">
 
 
                 <div class="ai-icon">
@@ -1090,6 +1090,7 @@
     </div>
 </div>
 
+<div class="toast-container" id="toastContainer"></div>
 
 <!-- =====================================================
      JAVASCRIPT
