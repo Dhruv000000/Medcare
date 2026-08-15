@@ -25,6 +25,10 @@ services:
         value: https://medicare-backend-33rk.onrender.com
       - key: ADMIN_REGISTRATION_CODE
         sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
       - key: DB_NAME
         fromDatabase:
           name: medicare-db

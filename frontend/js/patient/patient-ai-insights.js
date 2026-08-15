@@ -1,4 +1,7 @@
-// AI Health Insights remains intentionally deferred in Phase 10.
+function apiRequest(path, options = {}) {
+    if (window.MediCareAuth?.apiRequest) return window.MediCareAuth.apiRequest(path, options);
+    return fetch(path, options);
+}
 
 function loadUserInfo() {
     const name = localStorage.getItem('userName') || 'Patient';
@@ -33,15 +36,73 @@ function initTheme() {
 }
 
 function showDeferredMessage() {
-    const resultsArea = document.getElementById('analysisResultsArea');
-    const resultsContainer = document.getElementById('resultsContainer');
-    if (resultsArea) resultsArea.style.display = 'block';
-    if (!resultsContainer) return;
+    window.alert('This feature will be available after a validated backend workflow is implemented.');
+}
 
-    const message = document.createElement('p');
-    message.style.cssText = 'font-size: 13px; color: var(--text-secondary);';
-    message.textContent = 'Patient-facing AI risk classification is not available in this release because the current backend policy authorizes only active doctors and administrators. No prediction request was sent. Please consult a qualified healthcare professional for medical concerns.';
-    resultsContainer.replaceChildren(message);
+const chatHistory = [];
+const MAX_HISTORY_TURNS = 12;
+
+function appendChatBubble(role, text, { error = false } = {}) {
+    const messages = document.getElementById('chatMessages');
+    if (!messages) return null;
+    const bubble = document.createElement('div');
+    bubble.className = `chat-bubble ${role}${error ? ' error' : ''}`;
+    const content = document.createElement('div');
+    content.className = 'chat-bubble-content';
+    content.textContent = text;
+    bubble.appendChild(content);
+    messages.appendChild(bubble);
+    messages.scrollTop = messages.scrollHeight;
+    return bubble;
+}
+
+function appendTypingBubble() {
+    const messages = document.getElementById('chatMessages');
+    if (!messages) return null;
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble assistant typing';
+    const content = document.createElement('div');
+    content.className = 'chat-bubble-content';
+    content.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+    bubble.appendChild(content);
+    messages.appendChild(bubble);
+    messages.scrollTop = messages.scrollHeight;
+    return bubble;
+}
+
+async function sendSymptomMessage(message) {
+    const input = document.getElementById('chatInput');
+    const sendButton = document.getElementById('chatSendBtn');
+    appendChatBubble('user', message);
+    chatHistory.push({ role: 'user', content: message });
+    if (input) input.value = '';
+    if (input) input.disabled = true;
+    if (sendButton) sendButton.disabled = true;
+
+    const typingBubble = appendTypingBubble();
+    try {
+        const response = await apiRequest('/api/ai/symptom-chat/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message,
+                history: chatHistory.slice(-MAX_HISTORY_TURNS),
+            }),
+        });
+        const payload = await response.json().catch(() => ({}));
+        typingBubble?.remove();
+        if (!response.ok) {
+            throw new Error(payload.detail || 'The symptom assistant could not respond. Please try again.');
+        }
+        appendChatBubble('assistant', payload.reply);
+        chatHistory.push({ role: 'assistant', content: payload.reply });
+    } catch (error) {
+        typingBubble?.remove();
+        appendChatBubble('assistant', error.message || 'Something went wrong. Please try again.', { error: true });
+    } finally {
+        if (input) { input.disabled = false; input.focus(); }
+        if (sendButton) sendButton.disabled = false;
+    }
 }
 
 loadUserInfo();
@@ -50,27 +111,18 @@ initTheme();
 document.addEventListener('DOMContentLoaded', () => {
     const healthMeter = document.getElementById('healthMeterFill');
     if (healthMeter) healthMeter.style.width = '0%';
-    const symptomInput = document.getElementById('symptomInput');
-    const addButton = document.getElementById('addSymptomBtn');
-    const analyzeButton = document.getElementById('analyzeSymptomsBtn');
-    const quickSymptoms = document.getElementById('quickSymptomsContainer');
-    const selectedSymptoms = document.getElementById('selectedSymptoms');
-    const deferredSymptoms = document.createElement('p');
-    deferredSymptoms.style.cssText = 'font-size: 13px; color: var(--text-secondary); margin-top: 12px;';
-    deferredSymptoms.textContent = 'Symptom analysis is deferred until a reviewed backend clinical-safety workflow is available.';
-    quickSymptoms?.replaceChildren(deferredSymptoms);
-    if (symptomInput) symptomInput.disabled = true;
-    if (addButton) addButton.disabled = true;
-    if (selectedSymptoms) {
-        const deferredNotice = document.createElement('span');
-        deferredNotice.style.cssText = 'font-size: 13px; color: var(--text-secondary);';
-        deferredNotice.textContent = 'No AI analysis is active.';
-        selectedSymptoms.replaceChildren(deferredNotice);
+
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    if (chatForm) {
+        chatForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const message = chatInput?.value.trim();
+            if (!message) return;
+            sendSymptomMessage(message);
+        });
     }
-    if (analyzeButton) {
-        analyzeButton.disabled = false;
-        analyzeButton.addEventListener('click', showDeferredMessage);
-    }
+
     document.querySelectorAll('.learn-more-btn').forEach(button => button.addEventListener('click', showDeferredMessage));
     const chartContainer = document.getElementById('healthChartBars');
     if (chartContainer) {
@@ -79,5 +131,4 @@ document.addEventListener('DOMContentLoaded', () => {
         trendsNotice.textContent = 'Health trends will be available after a validated backend analytics workflow is implemented.';
         chartContainer.replaceChildren(trendsNotice);
     }
-    showDeferredMessage();
 });

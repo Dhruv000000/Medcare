@@ -110,3 +110,18 @@ class HeartRiskPredictionResponseSerializer(serializers.Serializer):
     status = serializers.ChoiceField(choices=["academic_development_only"], read_only=True)
     disclaimer = serializers.CharField(read_only=True, default=ACADEMIC_DISCLAIMER)
     explanation = HeartRiskExplanationSerializer(read_only=True)
+
+
+class SymptomChatMessageSerializer(serializers.Serializer):
+    role = serializers.ChoiceField(choices=["user", "assistant"])
+    content = serializers.CharField(max_length=2000, allow_blank=False, trim_whitespace=True)
+
+
+class SymptomChatRequestSerializer(serializers.Serializer):
+    message = serializers.CharField(max_length=2000, allow_blank=False, trim_whitespace=True)
+    history = SymptomChatMessageSerializer(many=True, required=False, default=list)
+
+    def validate_history(self, value):
+        if len(value) > 20:
+            raise serializers.ValidationError("Conversation history is too long.")
+        return value
