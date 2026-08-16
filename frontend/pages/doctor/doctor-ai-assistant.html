@@ -50,77 +50,91 @@
         <div class="ai-panel" id="aiPanel">
             <div class="ai-icon"><i class="fa-solid fa-robot"></i></div>
             <h2>Academic AI Risk Classification</h2>
+            <p class="ai-algorithm-badge"><i class="fa-solid fa-diagram-project"></i> Algorithm: <strong>Logistic Regression</strong> &mdash; trained on the UCI Cleveland Heart Disease dataset (13 clinical features, binary risk classification).</p>
             <p>Authorized doctors may submit the approved public-dataset feature schema for an academic development-only classification. This is not clinically validated and is not a diagnosis or medical advice.</p>
 
             <form id="doctorAiForm" class="ai-form" aria-describedby="aiFormNote" novalidate>
-                <p id="aiFormNote" class="ai-form-note">Enter the exact source-coded feature values. The backend remains authoritative for validation. Model probability is an academic model output, not diagnostic confidence. The doctor remains responsible for clinical interpretation and decisions. Do not enter patient identifiers or unrelated clinical records.</p>
+                <p id="aiFormNote" class="ai-form-note">Values below use the exact coding scheme the UCI dataset and trained model expect. The backend remains authoritative for validation. Model probability is an academic model output, not diagnostic confidence. The doctor remains responsible for clinical interpretation and decisions. Do not enter patient identifiers or unrelated clinical records.</p>
                 <div class="ai-form-grid">
                     <div class="ai-field">
-                        <label for="aiAge">age</label>
+                        <label for="aiAge">Age (years)</label>
                         <input id="aiAge" name="age" type="number" min="29" max="77" step="1" required>
                     </div>
                     <div class="ai-field">
-                        <label for="aiSex">sex (source code)</label>
+                        <label for="aiSex">Sex</label>
                         <select id="aiSex" name="sex" required>
-                            <option value="">Select</option><option value="0">0</option><option value="1">1</option>
+                            <option value="">Select</option><option value="0">Female (0)</option><option value="1">Male (1)</option>
                         </select>
                     </div>
                     <div class="ai-field">
-                        <label for="aiCp">cp (source code)</label>
+                        <label for="aiCp">Chest pain type</label>
                         <select id="aiCp" name="cp" required>
-                            <option value="">Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+                            <option value="">Select</option>
+                            <option value="1">Typical angina (1)</option>
+                            <option value="2">Atypical angina (2)</option>
+                            <option value="3">Non-anginal pain (3)</option>
+                            <option value="4">Asymptomatic (4)</option>
                         </select>
                     </div>
                     <div class="ai-field">
-                        <label for="aiTrestbps">trestbps</label>
+                        <label for="aiTrestbps">Resting blood pressure (mm Hg)</label>
                         <input id="aiTrestbps" name="trestbps" type="number" min="94" max="200" step="any" required>
                     </div>
                     <div class="ai-field">
-                        <label for="aiChol">chol</label>
+                        <label for="aiChol">Serum cholesterol (mg/dl)</label>
                         <input id="aiChol" name="chol" type="number" min="126" max="564" step="any" required>
                     </div>
                     <div class="ai-field">
-                        <label for="aiFbs">fbs (source code)</label>
+                        <label for="aiFbs">Fasting blood sugar &gt; 120 mg/dl</label>
                         <select id="aiFbs" name="fbs" required>
-                            <option value="">Select</option><option value="0">0</option><option value="1">1</option>
+                            <option value="">Select</option><option value="0">No (0)</option><option value="1">Yes (1)</option>
                         </select>
                     </div>
                     <div class="ai-field">
-                        <label for="aiRestecg">restecg (source code)</label>
+                        <label for="aiRestecg">Resting ECG results</label>
                         <select id="aiRestecg" name="restecg" required>
-                            <option value="">Select</option><option value="0">0</option><option value="1">1</option><option value="2">2</option>
+                            <option value="">Select</option>
+                            <option value="0">Normal (0)</option>
+                            <option value="1">ST-T wave abnormality (1)</option>
+                            <option value="2">Left ventricular hypertrophy (2)</option>
                         </select>
                     </div>
                     <div class="ai-field">
-                        <label for="aiThalach">thalach</label>
+                        <label for="aiThalach">Max heart rate achieved</label>
                         <input id="aiThalach" name="thalach" type="number" min="71" max="202" step="any" required>
                     </div>
                     <div class="ai-field">
-                        <label for="aiExang">exang (source code)</label>
+                        <label for="aiExang">Exercise-induced angina</label>
                         <select id="aiExang" name="exang" required>
-                            <option value="">Select</option><option value="0">0</option><option value="1">1</option>
+                            <option value="">Select</option><option value="0">No (0)</option><option value="1">Yes (1)</option>
                         </select>
                     </div>
                     <div class="ai-field">
-                        <label for="aiOldpeak">oldpeak</label>
+                        <label for="aiOldpeak">ST depression induced by exercise</label>
                         <input id="aiOldpeak" name="oldpeak" type="number" min="0" max="6.2" step="0.1" required>
                     </div>
                     <div class="ai-field">
-                        <label for="aiSlope">slope (source code)</label>
+                        <label for="aiSlope">Slope of peak exercise ST segment</label>
                         <select id="aiSlope" name="slope" required>
-                            <option value="">Select</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                            <option value="">Select</option>
+                            <option value="1">Upsloping (1)</option>
+                            <option value="2">Flat (2)</option>
+                            <option value="3">Downsloping (3)</option>
                         </select>
                     </div>
                     <div class="ai-field">
-                        <label for="aiCa">ca (source code)</label>
+                        <label for="aiCa">Major vessels colored by fluoroscopy</label>
                         <select id="aiCa" name="ca" required>
                             <option value="">Select</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
                         </select>
                     </div>
                     <div class="ai-field">
-                        <label for="aiThal">thal (source code)</label>
+                        <label for="aiThal">Thalassemia</label>
                         <select id="aiThal" name="thal" required>
-                            <option value="">Select</option><option value="3">3</option><option value="6">6</option><option value="7">7</option>
+                            <option value="">Select</option>
+                            <option value="3">Normal (3)</option>
+                            <option value="6">Fixed defect (6)</option>
+                            <option value="7">Reversible defect (7)</option>
                         </select>
                     </div>
                 </div>

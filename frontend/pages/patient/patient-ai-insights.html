@@ -134,6 +134,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <h3>AI Symptom Assistant</h3>
+                <button type="button" id="chatClearBtn" class="btn-secondary" title="Clear conversation"><i class="fa-solid fa-trash-can"></i> Clear</button>
             </div>
 
             <div class="demo-disclaimer">
@@ -142,11 +143,7 @@
             </div>
 
             <div class="chat-window">
-                <div id="chatMessages" class="chat-messages" role="log" aria-live="polite">
-                    <div class="chat-bubble assistant">
-                        <div class="chat-bubble-content">Hi, I'm the MediCare AI Symptom Assistant. Describe what you're feeling — for example, symptoms, how long you've had them, and their severity — and I'll share general information and self-care guidance.</div>
-                    </div>
-                </div>
+                <div id="chatMessages" class="chat-messages" role="log" aria-live="polite"></div>
                 <form id="chatForm" class="chat-input-row">
                     <input type="text" id="chatInput" placeholder="Describe your symptoms..." autocomplete="off" required>
                     <button type="submit" id="chatSendBtn" class="btn-primary">

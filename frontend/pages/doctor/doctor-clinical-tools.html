@@ -112,6 +112,7 @@
                     </div>
                     <div class="ai-field"><label for="phase26Diagnosis">Diagnosis or record title</label><input id="phase26Diagnosis" name="diagnosis" maxlength="255" required></div>
                     <div class="ai-field"><label for="phase26RecordNotes">Notes</label><textarea id="phase26RecordNotes" name="notes" rows="3"></textarea></div>
+                    <div class="ai-field"><label for="phase26RecordAttachment">Attach file (optional, PDF/JPG/PNG/TXT, max 5MB)</label><input id="phase26RecordAttachment" name="attachment" type="file" accept=".pdf,.jpg,.jpeg,.png,.txt"></div>
                 </div>
                 <div id="phase26ReportFields" class="phase26-workflow-fields" hidden>
                     <div class="phase26-form-grid">
@@ -129,6 +130,8 @@
                     </div>
                     <label class="phase26-checkbox"><input id="phase26FindingNormal" type="checkbox" checked> Finding is normal</label>
                     <div class="ai-field"><label for="phase26MedicalRecordId">Link existing medical record (optional)</label><select id="phase26MedicalRecordId" name="medical_record_id"><option value="">No record link</option></select></div>
+                    <div class="ai-field"><label for="phase26ReportAttachment">Attach file (optional, PDF/JPG/PNG/TXT, max 5MB)</label><input id="phase26ReportAttachment" name="attachment" type="file" accept=".pdf,.jpg,.jpeg,.png,.txt"></div>
+                    <p class="phase26-file-note">Note: when a file is attached, quick findings above are skipped for this submission (add them afterward without a file if needed).</p>
                 </div>
                 <div id="phase26PrescriptionFields" class="phase26-workflow-fields" hidden>
                     <div class="phase26-form-grid">

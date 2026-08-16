@@ -39,8 +39,34 @@ function showDeferredMessage() {
     window.alert('This feature will be available after a validated backend workflow is implemented.');
 }
 
-const chatHistory = [];
 const MAX_HISTORY_TURNS = 12;
+const MAX_STORED_TURNS = 30;
+const GREETING = "Hi, I'm the MediCare AI Symptom Assistant. Describe what you're feeling — for example, symptoms, how long you've had them, and their severity — and I'll share general information and self-care guidance.";
+
+function chatStorageKey() {
+    const email = localStorage.getItem('userEmail') || 'anonymous';
+    return `medicare-symptom-chat-history:${email}`;
+}
+
+function loadChatHistory() {
+    try {
+        const raw = localStorage.getItem(chatStorageKey());
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+    } catch {
+        return [];
+    }
+}
+
+function saveChatHistory(history) {
+    try {
+        localStorage.setItem(chatStorageKey(), JSON.stringify(history.slice(-MAX_STORED_TURNS)));
+    } catch {
+        // Storage unavailable or full; conversation simply won't persist across reloads.
+    }
+}
+
+let chatHistory = loadChatHistory();
 
 function appendChatBubble(role, text, { error = false } = {}) {
     const messages = document.getElementById('chatMessages');
@@ -75,6 +101,7 @@ async function sendSymptomMessage(message) {
     const sendButton = document.getElementById('chatSendBtn');
     appendChatBubble('user', message);
     chatHistory.push({ role: 'user', content: message });
+    saveChatHistory(chatHistory);
     if (input) input.value = '';
     if (input) input.disabled = true;
     if (sendButton) sendButton.disabled = true;
@@ -86,7 +113,7 @@ async function sendSymptomMessage(message) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 message,
-                history: chatHistory.slice(-MAX_HISTORY_TURNS),
+                history: chatHistory.slice(-MAX_HISTORY_TURNS - 1, -1),
             }),
         });
         const payload = await response.json().catch(() => ({}));
@@ -96,6 +123,7 @@ async function sendSymptomMessage(message) {
         }
         appendChatBubble('assistant', payload.reply);
         chatHistory.push({ role: 'assistant', content: payload.reply });
+        saveChatHistory(chatHistory);
     } catch (error) {
         typingBubble?.remove();
         appendChatBubble('assistant', error.message || 'Something went wrong. Please try again.', { error: true });
@@ -105,12 +133,31 @@ async function sendSymptomMessage(message) {
     }
 }
 
+function renderChatHistory() {
+    const messages = document.getElementById('chatMessages');
+    if (!messages) return;
+    messages.replaceChildren();
+    if (!chatHistory.length) {
+        appendChatBubble('assistant', GREETING);
+        return;
+    }
+    chatHistory.forEach(turn => appendChatBubble(turn.role, turn.content));
+}
+
+function clearChatConversation() {
+    chatHistory = [];
+    saveChatHistory(chatHistory);
+    renderChatHistory();
+}
+
 loadUserInfo();
 initTheme();
 
 document.addEventListener('DOMContentLoaded', () => {
     const healthMeter = document.getElementById('healthMeterFill');
     if (healthMeter) healthMeter.style.width = '0%';
+
+    renderChatHistory();
 
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
@@ -122,6 +169,10 @@ document.addEventListener('DOMContentLoaded', () => {
             sendSymptomMessage(message);
         });
     }
+
+    document.getElementById('chatClearBtn')?.addEventListener('click', () => {
+        if (window.confirm('Clear this conversation? This cannot be undone.')) clearChatConversation();
+    });
 
     document.querySelectorAll('.learn-more-btn').forEach(button => button.addEventListener('click', showDeferredMessage));
     const chartContainer = document.getElementById('healthChartBars');

@@ -1,6 +1,5 @@
 const roles = document.querySelectorAll(".role");
 const doctorField = document.querySelector(".doctor-field");
-const adminField = document.querySelector(".admin-field");
 const registerForm = document.getElementById("registerForm");
 const roleInput = document.getElementById("roleInput");
 const formStatus = document.querySelector(".form-status");
@@ -14,7 +13,6 @@ const fields = {
     dob: document.getElementById("dob"),
     gender: document.getElementById("gender"),
     doctorID: document.getElementById("doctorID"),
-    adminCode: document.getElementById("adminCode"),
     password: document.getElementById("password"),
     confirmPassword: document.getElementById("confirmPassword"),
 };
@@ -32,9 +30,7 @@ const updateRoleFields = (selectedRole) => {
     currentRole = selectedRole;
     if (roleInput) roleInput.value = selectedRole;
     if (doctorField) doctorField.style.display = selectedRole === "Doctor" ? "block" : "none";
-    if (adminField) adminField.style.display = selectedRole === "Admin" ? "block" : "none";
     if (selectedRole !== "Doctor" && fields.doctorID) fields.doctorID.value = "";
-    if (selectedRole !== "Admin" && fields.adminCode) fields.adminCode.value = "";
 
     roles.forEach((role) => {
         const active = role.dataset.role === selectedRole;
@@ -135,7 +131,6 @@ if (registerForm) {
         const password = fields.password.value;
         const confirmPassword = fields.confirmPassword.value;
         const doctorID = fields.doctorID?.value.trim() || "";
-        const adminCode = fields.adminCode?.value.trim() || "";
 
         if (!firstName || !lastName || !email || !phone || !dateOfBirth || !gender || !password || !confirmPassword) {
             showStatus("Please complete all required fields.");
@@ -170,12 +165,6 @@ if (registerForm) {
             fields.doctorID.focus();
             return;
         }
-        if (currentRole === "Admin" && !adminCode) {
-            showStatus("Please enter the Admin Code.");
-            fields.adminCode.focus();
-            return;
-        }
-
         registerButton.disabled = true;
         registerButton.classList.add("loading");
         registerButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating Account...';
@@ -199,7 +188,6 @@ if (registerForm) {
                     gender,
                     role: currentRole,
                     doctor_id: doctorID,
-                    admin_code: adminCode,
                     password,
                     confirm_password: confirmPassword,
                 }),

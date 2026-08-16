@@ -407,6 +407,16 @@ function phase26SyncWorkflow(records, appointments) {
     phase26ToggleFields();
 }
 
+function phase26BuildFormData(payload, file) {
+    const formData = new FormData();
+    Object.entries(payload).forEach(([key, value]) => {
+        if (value === undefined || value === null || key === 'findings') return;
+        formData.append(key, String(value));
+    });
+    formData.append('attachment', file);
+    return formData;
+}
+
 function phase26Payload() {
     const workflow = phase26Type?.value || 'record';
     const appointmentId = phase26Field('phase26AppointmentId');
@@ -431,6 +441,7 @@ function phase26Payload() {
                 diagnosis,
                 notes: phase26Field('phase26RecordNotes'),
             },
+            file: document.getElementById('phase26RecordAttachment')?.files[0] || null,
         };
     }
     if (workflow === 'report') {
@@ -461,6 +472,7 @@ function phase26Payload() {
                 interpretation: phase26Field('phase26Interpretation'),
                 findings: findingLabel ? [{ label: findingLabel, value: findingValue, is_normal: Boolean(document.getElementById('phase26FindingNormal')?.checked), sort_order: 0 }] : [],
             },
+            file: document.getElementById('phase26ReportAttachment')?.files[0] || null,
         };
     }
     const medicine = phase26Field('phase26Medicine');
@@ -497,11 +509,10 @@ async function submitPhase26ClinicalEntry(event) {
     }
     phase26SetStatus('Saving authorized clinical entry…', false);
     try {
-        const response = await apiRequest(request.endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(request.payload),
-        });
+        const requestOptions = request.file
+            ? { method: 'POST', body: phase26BuildFormData(request.payload, request.file) }
+            : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(request.payload) };
+        const response = await apiRequest(request.endpoint, requestOptions);
         const payload = await response.json().catch(() => ({}));
         if (response.status === 401) {
             window.location.href = '../auth/login.html';
