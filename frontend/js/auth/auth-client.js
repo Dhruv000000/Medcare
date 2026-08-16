@@ -1,11 +1,15 @@
 (() => {
-    // Explicit override wins. Otherwise, when served from the documented local
-    // dev frontend origin, target the local dev backend port; when served from
-    // any other origin (e.g. the deployed backend serving this same frontend),
-    // default to same-origin so no override is needed after deployment.
+    // Explicit override wins. Otherwise: any localhost/127.0.0.1 origin is
+    // assumed to be a local dev frontend (served by any static server/port —
+    // Live Server, `http-server`, VS Code preview, etc.) talking to Django's
+    // conventional local port 8000. This also covers the case where Django
+    // itself serves the frontend locally (whitenoise on 127.0.0.1:8000),
+    // since the computed URL then simply equals the current origin. Any
+    // non-localhost origin (the deployed backend serving this same frontend)
+    // defaults to same-origin so no override is needed after deployment.
     const API_BASE_URL = window.MEDICARE_API_BASE_URL || (
-        ["127.0.0.1", "localhost"].includes(window.location.hostname) && window.location.port === "8010"
-            ? "http://127.0.0.1:8000"
+        ["127.0.0.1", "localhost"].includes(window.location.hostname)
+            ? `http://${window.location.hostname}:8000`
             : window.location.origin
     );
     const LOGIN_PATH = "../auth/login.html";

@@ -192,11 +192,20 @@ if IS_PRODUCTION and not _frontend_origins_value:
     raise ImproperlyConfigured(
         "FRONTEND_ALLOWED_ORIGINS must be set when DJANGO_ENV=production."
     )
+# Local dev convenience default: the frontend is often served by whatever
+# static-file tool is on hand (Python's http.server, Live Server, `serve`,
+# http-server, Vite, ...), each with its own default port. Cover the common
+# ones so local dev works without manually editing backend/.env; set
+# FRONTEND_ALLOWED_ORIGINS explicitly to override.
+_DEFAULT_LOCAL_PORTS = (8010, 3000, 5500, 5173, 8080)
+_default_frontend_origins = ",".join(
+    f"http://{host}:{port}"
+    for host in ("127.0.0.1", "localhost")
+    for port in _DEFAULT_LOCAL_PORTS
+)
 FRONTEND_ALLOWED_ORIGINS = {
     origin.strip()
-    for origin in (
-        _frontend_origins_value or "http://127.0.0.1:8010,http://localhost:8010"
-    ).split(",")
+    for origin in (_frontend_origins_value or _default_frontend_origins).split(",")
     if origin.strip()
 }
 CSRF_TRUSTED_ORIGINS = sorted(FRONTEND_ALLOWED_ORIGINS)
